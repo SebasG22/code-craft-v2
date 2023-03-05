@@ -1,6 +1,6 @@
-import { CoffeeEntity } from "../entities/coffee.entity";
-import { ShoppingCartEntity } from "../entities/shopping-cart.entity";
-import { ShoppingCartRepository } from "../repositories/shopping-cart.repository";
+import { CoffeeEntity } from "../domain/entities/coffee.entity";
+import { ShoppingCartEntity } from "../domain/entities/shopping-cart.entity";
+import { ShoppingCartRepository } from "../domain/repositories/shopping-cart.repository";
 
 export class ShoppingCartInMemory implements ShoppingCartRepository {
     public cart = ShoppingCartEntity.create({items: []});

@@ -11,4 +11,8 @@ export class Price {
   static create(data: PriceProps) {
     return new Price(data);
   }
+
+  get value(){
+    return this.data.value;
+  }
 }

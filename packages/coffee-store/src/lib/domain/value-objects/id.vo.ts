@@ -19,6 +19,6 @@ export class Id {
   }
 
   get value(){
-    return this.data;
+    return this.data.value;
   }
 }

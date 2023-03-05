@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "coffee-store": ["packages/coffee-store/src/index.ts"]
+      "@code-craft/coffee-store": ["packages/coffee-store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
