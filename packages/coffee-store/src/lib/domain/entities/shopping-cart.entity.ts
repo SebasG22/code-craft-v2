@@ -17,7 +17,7 @@ export class ShoppingCartEntity {
 
    static create(data: ShoppingCartEntityProps){
       return new ShoppingCartEntity({
-            id: Id.generateId(),
+            id: data.id ? Id.create(data.id) : Id.generateId(),
             items: data.items
       });
    }

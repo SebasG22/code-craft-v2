@@ -18,6 +18,14 @@ export class Id {
     });
   }
 
+  static create(id: string){
+    const randomNum = Math.random().toString(36).substring(2, 8);
+
+    return new Id({
+      value: `${id}-${randomNum}`,
+    });
+  }
+
   get value(){
     return this.data.value;
   }
