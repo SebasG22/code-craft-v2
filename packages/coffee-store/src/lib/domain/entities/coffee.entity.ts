@@ -28,7 +28,7 @@ export class CoffeeEntity {
     );
 
     return new CoffeeEntity({
-      id: Id.generateId(),
+      id: data.id ? Id.create(data.id) : Id.generateId(),
       name: data.name,
       price: Price.create({ value: data.price }),
       ingredients: ingredients,
