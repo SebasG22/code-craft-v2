@@ -6,7 +6,7 @@ export class CoffeeInMemory implements CoffeeRepository {
   coffees: CoffeeEntity[] = [];
 
   constructor() {
-    this.coffees = data.map((item) =>
+    this.coffees = data.filter((item) => item.availability).map((item) => 
       CoffeeEntity.create({
         name: item.name,
         price: item.price,

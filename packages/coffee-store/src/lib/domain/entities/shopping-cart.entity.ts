@@ -3,12 +3,12 @@ import { CoffeeEntity } from "./coffee.entity";
 
 export interface ShoppingCartEntityValue {
    id: Id;
-   items: CoffeeEntity[];
+   items: { type: CoffeeEntity, quantity: number}[];
  }
  
  export interface ShoppingCartEntityProps {
    id?: string;
-   items: CoffeeEntity[];
+   items: { type: CoffeeEntity, quantity: number }[];
  }
 
 export class ShoppingCartEntity {

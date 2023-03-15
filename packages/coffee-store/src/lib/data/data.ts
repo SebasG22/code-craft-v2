@@ -1,7 +1,10 @@
 export const data = [
     {
         "name": "Espresso",
-        "price": 10,
+        "price": 40,
+        "inStore": false,
+        "online": false,
+        "availability": false,
         "recipe": [
             { "name": "espresso", "quantity": 30 }
         ]
@@ -9,6 +12,9 @@ export const data = [
     {
         "name": "Espresso Macchiato",
         "price": 12,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "milk foam", "quantity": 15 }
@@ -17,6 +23,9 @@ export const data = [
     {
         "name": "Cappuccino",
         "price": 19,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "steamed milk", "quantity": 20 },
@@ -26,6 +35,9 @@ export const data = [
     {
         "name": "Mocha",
         "price": 8,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "chocolate syrup", "quantity": 20 },
@@ -36,6 +48,9 @@ export const data = [
     {
         "name": "Flat White",
         "price": 18,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "steamed milk", "quantity": 50 }
@@ -44,6 +59,9 @@ export const data = [
     {
         "name": "Americano",
         "price": 7,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "water", "quantity": 70 }
@@ -52,6 +70,9 @@ export const data = [
     {
         "name": "Cafe Latte",
         "price": 16,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "steamed milk", "quantity": 50 },
@@ -61,6 +82,9 @@ export const data = [
     {
         "name": "Espresso Con Panna",
         "price": 14,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "whipped cream", "quantity": 15 }
@@ -69,6 +93,9 @@ export const data = [
     {
         "name": "Cafe Breve",
         "price": 15,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 25 },
             { "name": "steamed milk", "quantity": 30 },
@@ -79,6 +106,9 @@ export const data = [
     {
         "name": "(Discounted) Mocha",
         "price": 4,
+        "inStore": true,
+        "online": true,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "chocolate syrup", "quantity": 20 },
