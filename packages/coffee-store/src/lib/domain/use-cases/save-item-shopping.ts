@@ -5,11 +5,11 @@ import { ShoppingCartRepository } from '../repositories/shopping-cart.repository
 export class SaveCoffeeItemIntoShoppingCartUseCase {
   constructor(private shoppingCartRepository: ShoppingCartRepository) {}
 
-  execute(data: CoffeeEntity) {
+  execute(data: CoffeeEntity){
     const items = this.shoppingCartRepository.get().value.items;
 
     const itemOnCartIndex = items.findIndex(
-      (item) => item.type.value.id === data.value.id
+      (item) => item.type.value.id.value === data.value.id.value
     );
     
     if (itemOnCartIndex > -1) {
@@ -23,5 +23,7 @@ export class SaveCoffeeItemIntoShoppingCartUseCase {
     });
 
     this.shoppingCartRepository.save(cart);
+
+    return cart;
   }
 }
