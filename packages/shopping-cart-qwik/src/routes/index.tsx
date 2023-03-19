@@ -4,10 +4,8 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 export default component$(() => {
   return (
     <>
-
       <div class="section bright">
-        <div class="container center">
-        </div>
+        <div class="container center"></div>
       </div>
 
       <div class="section">
@@ -20,11 +18,7 @@ export default component$(() => {
 
       <div class="section">
         <div class="container topics">
-         
-
-          <div>
-           
-          </div>
+          <div></div>
         </div>
       </div>
     </>

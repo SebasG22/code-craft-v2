@@ -1,8 +1,8 @@
 // prettier-ignore
 const scopes = [
     { name: 'coffee-store', description: 'anything coffee-store specific'},
-    { name: 'shoppinh-cart-react', description: 'anything shoppinh-cart-react specific'},
-    { name: 'shoppinh-cart-qwik', description: 'anything shoppinh-cart-qwik specific'},
+    { name: 'shopping-cart-react', description: 'anything shoppinh-cart-react specific'},
+    { name: 'shopping-cart-qwik', description: 'anything shoppinh-cart-qwik specific'},
     { name: 'shopping-cart-terminal', description: 'anything shopping-cart-terminal specific' },
     { name: 'repo', description: 'anything related to managing the repo itself'},
     { name: 'misc', description: 'misc stuff' },

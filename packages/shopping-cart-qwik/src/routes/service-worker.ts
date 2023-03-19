@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-globals */
 
-
 /*
  * WHAT IS THIS FILE?
  *

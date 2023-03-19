@@ -12,11 +12,11 @@ export default component$(() => {
     <div class="page">
       <main>
         <section class="container">
-        <Slot />
+          <Slot />
         </section>
       </main>
       <footer>
-          <p>Copyright 2023 Mario Life</p>
+        <p>Copyright 2023 Mario Life</p>
       </footer>
     </div>
   );
