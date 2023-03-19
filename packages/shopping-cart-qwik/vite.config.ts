@@ -1,16 +1,16 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/shopping-cart-qwik',
-
   server: {
-    port: 4200,
-    host: 'localhost',
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
   },
 
   preview: {
@@ -20,20 +20,29 @@ export default defineConfig({
 
   plugins: [
     qwikCity(),
-    qwikVite(),
+    qwikVite({
+      client: {
+        outDir: '../../dist/apps/shopping-cart-qwik/client',
+      },
+      ssr: {
+        outDir: '../../dist/apps/shopping-cart-qwik/server',
+      },
+    }
+    ),
     viteTsConfigPaths({
       root: '../../',
     }),
   ],
+  
 
   // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [
-  //    viteTsConfigPaths({
-  //      root: '../../',
-  //    }),
-  //  ],
-  // },
+  worker: {
+   plugins: [
+     viteTsConfigPaths({
+       root: '../../',
+     }),
+   ],
+  },
 
   test: {
     globals: true,
