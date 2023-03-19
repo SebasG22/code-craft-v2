@@ -1,0 +1,34 @@
+import { CoffeeEntity } from '../entities/coffee.entity';
+import { GetAllCoffeesUseCase } from './get-all-coffees';
+
+const coffess= [CoffeeEntity.create({
+    ingredients: [],
+    name: 'Cappuccino',
+    price: 2,
+    id: 'demo-capuccino',
+  }),
+  CoffeeEntity.create({
+    ingredients: [],
+    name: 'Mocha',
+    price: 5,
+    id: 'demo-mocha',
+  })
+];
+  
+  
+describe('Get All Coffees Use Case', ()=>{
+
+    it('Should return all coffess', ()=>{
+        const useCase = new GetAllCoffeesUseCase(
+            {
+                getAll: ()=> coffess,
+                 getCoffeeByName:(name: string) => {},
+                save:(coffee: CoffeeEntity) => {},
+            }
+        );
+
+        const result = useCase.execute();
+
+        expect(result).toEqual(coffess);
+    })
+});
