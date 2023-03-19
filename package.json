@@ -2,7 +2,15 @@
   "name": "code-craft",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "commit": "czg"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git",
+      "czConfig": "./commitizen.js"
+    }
+  },
   "private": true,
   "dependencies": {
     "@clack/prompts": "^0.6.1",
@@ -13,6 +21,9 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "commitizen": "^4.3.0",
+    "czg": "^1.6.0",
+    "husky": "^8.0.3",
     "@nrwl/cypress": "15.8.6",
     "@nrwl/esbuild": "15.8.6",
     "@nrwl/eslint-plugin-nx": "15.8.6",
@@ -60,4 +71,3 @@
     "packages/*"
   ]
 }
-
