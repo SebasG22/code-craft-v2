@@ -12,6 +12,6 @@ describe('Price VO', ()=>{
     it('should throw an error when using an invalid price', ()=>{
         expect(() => Price.create({
             value: -1
-        })).toThrowError(/Price should be greather or equal to 0/)
+        })).toThrowError("Price should be greather or equal to 0")
     })
 });

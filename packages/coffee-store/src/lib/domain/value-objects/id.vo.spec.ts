@@ -14,6 +14,6 @@ describe('ID Vo', ()=>{
     });
 
     it('should not create an ID instance when passing an invalid Id value', ()=>{
-        expect(() => Id.create("")).toThrowError(/Cannot generate an Instance from an empty id/)
+        expect(() => Id.create("")).toThrowError("Cannot generate an Instance from an empty id")
     })
 });
