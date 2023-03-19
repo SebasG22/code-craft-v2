@@ -1,0 +1,72 @@
+{
+  "name": "shopping-cart-qwik",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/shopping-cart-qwik/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/packages/shopping-cart-qwik"
+      },
+      "configurations": {
+        "development": {
+          "mode": "ssr"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "shopping-cart-qwik:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "shopping-cart-qwik:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "shopping-cart-qwik:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "shopping-cart-qwik:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "shopping-cart-qwik:build:development"
+        },
+        "production": {
+          "buildTarget": "shopping-cart-qwik:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/packages/shopping-cart-qwik"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/shopping-cart-qwik"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/shopping-cart-qwik/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
