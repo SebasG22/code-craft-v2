@@ -80,13 +80,15 @@ export class CoffeeTerminalView implements CoffeeView {
           `Id: ${coffee.value.id.value} -  Name: ${coffee.value.name} - Price: ${coffee.value.price.value}`
         );
       });
-
     } else {
       note('No coffees registered');
     }
   }
 
-  async listShoppingCartItems(cart: ShoppingCartEntity, total: number): Promise<void> {
+  async listShoppingCartItems(
+    cart: ShoppingCartEntity,
+    total: number
+  ): Promise<void> {
     if (cart.value.items.length > 0) {
       cart.value.items.forEach((item) => {
         note(`Name: ${item.type.value.name} - Quantity: ${item.quantity}`);

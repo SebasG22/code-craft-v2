@@ -1,3 +1,3 @@
 export function ShoppingCart() {
-    return '';
+  return '';
 }
