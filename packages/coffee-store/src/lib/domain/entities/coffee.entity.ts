@@ -24,8 +24,7 @@ export class CoffeeEntity {
 
   static create(data: CoffeeEntityProps) {
     const ingredients = data.ingredients.map(
-      (ingredient) => new CoffeeIngredient(ingredient)
-    );
+      (ingredient) => CoffeeIngredient.create(ingredient));
 
     return new CoffeeEntity({
       id: data.id ? Id.create(data.id) : Id.generateId(),
