@@ -20,10 +20,13 @@ export class Id {
 
   static create(id: string){
     const randomNum = Math.random().toString(36).substring(2, 8);
+    if(id.length > 0 ){
+      return new Id({
+        value: `${id}-${randomNum}`,
+      });
+    }
 
-    return new Id({
-      value: `${id}-${randomNum}`,
-    });
+    throw new Error("Cannot generate an Instance from an empty id");
   }
 
   get value(){
