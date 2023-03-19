@@ -1,9 +1,7 @@
 import {
-  intro,
   note,
   multiselect,
   isCancel,
-  cancel,
   select,
   confirm,
   outro,

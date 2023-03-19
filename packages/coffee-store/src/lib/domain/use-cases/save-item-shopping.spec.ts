@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { CoffeeEntity } from '../entities/coffee.entity';
 import { ShoppingCartEntity } from '../entities/shopping-cart.entity';
 import { SaveCoffeeItemIntoShoppingCartUseCase } from './save-item-shopping';
-import { ShoppingCartRepository } from '../repositories/shopping-cart.repository';
 
 const coffess = [
   CoffeeEntity.create({
@@ -22,7 +22,7 @@ function withoutItems(): SaveCoffeeItemIntoShoppingCartUseCase {
   const cart = ShoppingCartEntity.create({ items: [] });
 
   return new SaveCoffeeItemIntoShoppingCartUseCase({
-    save: (cart: ShoppingCartEntity) => {},
+    save: () => {},
     get: () => cart,
     getTotal: () => 2,
   });
@@ -34,7 +34,7 @@ function withItems(): SaveCoffeeItemIntoShoppingCartUseCase {
   });
 
   return new SaveCoffeeItemIntoShoppingCartUseCase({
-    save: (cart: ShoppingCartEntity) => {},
+    save: () => {},
     get: () => cart,
     getTotal: () => 2,
   });

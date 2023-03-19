@@ -1,4 +1,3 @@
-import { CoffeeEntity } from "../domain/entities/coffee.entity";
 import { ShoppingCartEntity } from "../domain/entities/shopping-cart.entity";
 import { ShoppingCartRepository } from "../domain/repositories/shopping-cart.repository";
 

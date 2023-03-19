@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { CoffeeEntity } from '../entities/coffee.entity';
 import { GetAllCoffeesUseCase } from './get-all-coffees';
 
@@ -22,8 +23,8 @@ describe('Get All Coffees Use Case', ()=>{
         const useCase = new GetAllCoffeesUseCase(
             {
                 getAll: ()=> coffess,
-                 getCoffeeByName:(name: string) => {},
-                save:(coffee: CoffeeEntity) => {},
+                getCoffeeByName:() => {},
+                save:() => {},
             }
         );
 
