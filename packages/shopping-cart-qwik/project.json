@@ -8,11 +8,9 @@
       "dependsOn": ["build.client", "build.ssr"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "echo 'finished build'"
-        ]
-    }
-  },
+        "commands": ["echo 'finished build'"]
+      }
+    },
 
     "build.client": {
       "executor": "@nrwl/vite:build",

@@ -27,21 +27,19 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/shopping-cart-qwik/server',
       },
-    }
-    ),
+    }),
     viteTsConfigPaths({
       root: '../../',
     }),
   ],
-  
 
   // Uncomment this if you are using workers.
   worker: {
-   plugins: [
-     viteTsConfigPaths({
-       root: '../../',
-     }),
-   ],
+    plugins: [
+      viteTsConfigPaths({
+        root: '../../',
+      }),
+    ],
   },
 
   test: {
