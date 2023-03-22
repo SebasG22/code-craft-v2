@@ -11,7 +11,7 @@ export interface CoffeeView {
   listShoppingCartItems(cart: ShoppingCartEntity, total: number): Promise<void>;
   addCoffeeToOrder(
     coffees: CoffeeEntity[]
-  ): Promise<{ data: { value: string } }[]>;
+  ): Promise<{ data: { value: string } }[] | void>;
   confirmOperation(message: string): Promise<boolean>;
   cancelOperation(message: string): void;
   showEndMessage(message: string): void;

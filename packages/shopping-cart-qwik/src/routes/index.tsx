@@ -1,22 +1,41 @@
-import { component$, useSignal, useStore } from '@builder.io/qwik';
+import { component$, useSignal, useStore, useStylesScoped$, useTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import Cup from '../components/cup/cup';
 import Pay from '../components/pay/pay';
+import { CoffeeQwikView } from '../presentation/coffee.view';
 import { coffee, coffee2, coffee3, coffee4 } from '../seed';
+import indexStyles from './index.css?inline';
+
+export const view = new CoffeeQwikView();
+
 
 export default component$(() => {
+  useStylesScoped$(indexStyles);
+  const coffees = useStore(
+    {
+      list: [
+        { ...coffee, showTranslate: false, translate: 'translate version' },
+        { ...coffee2, showTranslate: false, translate: 'translate version' },
+        { ...coffee3, showTranslate: false, translate: 'translate version' },
+        { ...coffee4, showTranslate: false, translate: 'translate version' },
+      ],
+    },
+    {
+      deep: true,
+    }
+    );
+    view.start(coffees);
+    
+    useTask$(({ track }) => {
+      // rerun this function  when `value` property changes.
+      // track(() => coffees.list.values);
+      view.listSomething();
+      // Set up timeout for debounced value.
+      // const id = setTimeout(() => (store.debouncedValue = store.value), 500);
+      // return cleanup function in case `value` property changes before time is up.
+    });
+  
 
-  const coffees = useStore({
-    list: [
-    { ...coffee, showTranslate: false, translate: 'translate version' },
-    { ...coffee2, showTranslate: false,translate: 'translate version' },
-    { ...coffee3, showTranslate: false,translate: 'translate version' },
-    { ...coffee4, showTranslate: false, translate: 'translate version' },
-  ]},
-  {
-    deep: true
-  }
-  );
 
   const selectedCoffee = useSignal<string>();
   const modalRef = useSignal<HTMLDialogElement>();
@@ -27,14 +46,17 @@ export default component$(() => {
         <ul>
           {coffees.list.map((item, index) => (
             <li>
-              <h4 onDblClick$={() => {
-                console.warn("DB clicked");
-                // item.showTranslate = true;
-                // coffees.list[index]={ ...item, showTranslate: true};
-                // console.warn({coffees});
-                }}>
-                {item.showTranslate ? 'true': 'false'}
-                { item.showTranslate ? item.translate : item.name} 
+              <h4
+                onDblClick$={() => {
+                  console.warn('DB clicked');
+                  // item.showTranslate = true;
+                  // coffees.list[index]={ ...item, showTranslate: true};
+                  // console.warn({coffees});
+                }}
+              >
+                {/* {item.showTranslate ? 'true' : 'false'} */}
+                {/* {item.showTranslate ? item.translate : item.name} */}
+                {item.name}
                 <br />
                 <small>{item.price}</small>
               </h4>
@@ -53,8 +75,7 @@ export default component$(() => {
             </li>
           ))}
         </ul>
-        <Pay />
-
+        <Pay isDisablePreview={false}/>
       </div>
 
       <dialog ref={modalRef} data-cy="add-to-cart-modal">

@@ -3,13 +3,18 @@ import {
   useSignal,
   useStore,
   useStylesScoped$,
+  $
 } from '@builder.io/qwik';
 import { coffee, coffee2, coffee3, coffee4 } from '../../seed';
 import payStyles from './pay.css?inline';
 
-export default component$(() => {
-  useStylesScoped$(payStyles);
 
+export interface PayProps {
+  isDisablePreview: boolean;
+}
+
+export default component$((props: PayProps) => {
+  useStylesScoped$(payStyles);
 
   const coffees = useStore(
     {
@@ -28,12 +33,16 @@ export default component$(() => {
   const dialogRef = useSignal<HTMLDivElement>();
   const cartCount = useSignal(1);
 
+  const togglePreview = $(() =>{
+    if (props.isDisablePreview) return;
+    dialogRef.value?.classList.toggle('show');
+  });
+
   return (
     <div
       class="pay-container"
       onMouseLeave$={() => {
-        console.warn('onMouseLeave container');
-        dialogRef.value?.classList.toggle('show');
+        togglePreview();
       }}
     >
       {cartCount.value > 0 && (
@@ -75,8 +84,7 @@ export default component$(() => {
         type="button"
         aria-label="Proceed to checkout"
         onMouseOver$={() => {
-          console.warn('on Mouse over');
-          dialogRef.value?.classList.toggle('show');
+          togglePreview();
         }}
         onClick$={() => {
           console.warn('Pay');

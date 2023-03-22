@@ -23,8 +23,9 @@ export class CoffeeEntity {
   constructor(private data: CoffeeEntityValue) {}
 
   static create(data: CoffeeEntityProps) {
-    const ingredients = data.ingredients.map(
-      (ingredient) => CoffeeIngredient.create(ingredient));
+    const ingredients = data.ingredients.map((ingredient) =>
+      CoffeeIngredient.create(ingredient)
+    );
 
     return new CoffeeEntity({
       id: data.id ? Id.create(data.id) : Id.generateId(),
@@ -38,13 +39,15 @@ export class CoffeeEntity {
     return this.data;
   }
 
-  get serializeValue(){
+  get serializeValue() {
     return {
       id: this.data.id.value,
       name: this.data.name,
       price: this.data.price.value,
-      ingredients: this.data.ingredients.map((ingredient)=> ({ name: ingredient.value.name, quantity: ingredient.value.quantity.value.quantity}))
-      
-    }
+      ingredients: this.data.ingredients.map((ingredient) => ({
+        name: ingredient.value.name,
+        quantity: ingredient.value.quantity.value.quantity,
+      })),
+    };
   }
 }

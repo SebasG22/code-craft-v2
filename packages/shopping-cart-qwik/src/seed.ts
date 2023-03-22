@@ -42,4 +42,3 @@ export const coffee4 = CoffeeEntity.create({
     { name: 'whipped cream', quantity: 25 },
   ],
 }).serializeValue;
-console.log(coffee);

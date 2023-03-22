@@ -1,0 +1,51 @@
+ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 100px;
+  }
+  div {
+    margin-top: 10px;
+  }
+  button {
+    border: 4px solid black;
+    background: antiquewhite;
+    margin: 0 6px;
+  }
+  button:hover {
+    border-color: goldenrod;
+    color: goldenrod;
+  }
+  :global(.pay) {
+    display: block;
+    right: 10px;
+    bottom: 10px;
+    align-self: flex-end;
+  }
+  :global(.pay-container) {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+  }
+  @media (min-width: 500px) {
+    ul {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+  @media (min-width: 800px) {
+    ul {
+      grid-template-columns: repeat(3, auto);
+    }
+  }
+  li {
+    padding: 10px 20px;
+  }
+  li:hover h4 {
+    color: goldenrod;
+  }
+  li h4 {
+    /* text-align: center; */
+    margin: 10px 0;
+  }

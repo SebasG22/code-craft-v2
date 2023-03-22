@@ -4,7 +4,7 @@ export const data = [
         "price": 40,
         "inStore": false,
         "online": false,
-        "availability": false,
+        "availability": true,
         "recipe": [
             { "name": "espresso", "quantity": 30 }
         ]
@@ -108,7 +108,7 @@ export const data = [
         "price": 4,
         "inStore": true,
         "online": true,
-        "availability": true,
+        "availability": false,
         "recipe": [
             { "name": "espresso", "quantity": 30 },
             { "name": "chocolate syrup", "quantity": 20 },

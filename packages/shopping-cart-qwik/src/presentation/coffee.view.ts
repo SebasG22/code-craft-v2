@@ -1,29 +1,32 @@
-import {
-  note,
-  multiselect,
-  isCancel,
-  select,
-  confirm,
-  outro,
-} from '@clack/prompts';
 import { CoffeeEntity, CoffeeView } from '@code-craft/coffee-store';
 import { ShoppingCartEntity } from 'packages/coffee-store/src/lib/domain/entities/shopping-cart.entity';
 import { getCoffeePresenter } from './dependenciesLocator';
 
-export class CoffeeTerminalView implements CoffeeView {
-  private presenter = getCoffeePresenter(this);
+// export type CoffeeQwikstate = React.Dispatch<
+//   React.SetStateAction<{
+//     users?: any[];
+//   }>
+// >;
+
+export class CoffeeQwikView implements CoffeeView {
+  public presenter = getCoffeePresenter(this);
+  private coffeeQwikState: any;
+
+
+  start(qwikState: any) {
+    this.coffeeQwikState = qwikState;
+}
 
   async showMainMenu(): Promise<string> {
     return Promise.resolve('');
   }
 
   async confirmOperation(message: string): Promise<boolean> {
-    const shouldContinue = await confirm({
-      message,
-    });
+   return Promise.resolve(true);
+  }
 
-    this.operationWasCanceled(shouldContinue as symbol);
-    return shouldContinue as boolean;
+  listSomething(){
+    this.presenter.showAllCoffees();
   }
 
   cancelOperation(): void {
@@ -31,71 +34,31 @@ export class CoffeeTerminalView implements CoffeeView {
   }
 
   showEndMessage(message: string) {
-    outro(message);
     this.cancelOperation();
   }
 
   showTotalMessage(message: string): void {
-    outro(message);
+    // console.warn(message);
   }
 
   async addCoffeeToOrder(coffees: CoffeeEntity[]) {
-    const userSelection = await multiselect({
-      message: 'Choose your coffees.',
-      options: coffees.map((coffee) => ({
-        value: coffee.value.id,
-        label: coffee.value.name,
-        hint: `${coffee.value.price.value} USD`,
-      })),
-      required: false,
-    });
-
-    this.operationWasCanceled(userSelection as symbol);
-
-    return userSelection as { data: { value: string } }[];
+    //
   }
 
-  listCoffees(coffees: CoffeeEntity[]): void {
-    note('Coffee List');
-
-    if (coffees.length > 0) {
-      coffees.forEach((coffee) => {
-        note(
-          `Id: ${coffee.value.id.value} -  Name: ${coffee.value.name} - Price: ${coffee.value.price.value}`
-        );
-      });
-    } else {
-      note('No coffees registered');
-    }
+  listCoffees(coffees: CoffeeEntity[]) {
+    const serialize = coffees.map((coffee)=>coffee.serializeValue)
+    this.coffeeQwikState.list = serialize;
+    
   }
 
   async listShoppingCartItems(
     cart: ShoppingCartEntity,
     total: number
-  ): Promise<void> {
-    if (cart.value.items.length > 0) {
-      cart.value.items.forEach((item) => {
-        note(`Name: ${item.type.value.name} - Quantity: ${item.quantity}`);
-      });
-      note(`Total: ${total} USD`);
-
-      // this.presenter.calculateTotal();
-      await this.presenter.start();
-    } else {
-      note('No items registered');
-
-      const answer = await this.confirmOperation('Want to go back ?');
-      if (answer) {
-        this.presenter.start();
-      } else {
-        this.showEndMessage('Thanks for being with us');
-      }
-    }
+  ){
+   return Promise.resolve();
   }
 
   operationWasCanceled(value: symbol) {
-    if (isCancel(value)) {
-      //   this.presenter.onDestroy();
-    }
+    //
   }
 }
