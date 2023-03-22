@@ -37,4 +37,14 @@ export class CoffeeEntity {
   get value() {
     return this.data;
   }
+
+  get serializeValue(){
+    return {
+      id: this.data.id.value,
+      name: this.data.name,
+      price: this.data.price.value,
+      ingredients: this.data.ingredients.map((ingredient)=> ({ name: ingredient.value.name, quantity: ingredient.value.quantity.value.quantity}))
+      
+    }
+  }
 }

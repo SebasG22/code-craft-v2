@@ -1,5 +1,6 @@
 import { component$, Slot } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
+import Header from '../components/header/header';
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
@@ -10,14 +11,12 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   return (
     <div class="page">
+      <Header/>
       <main>
         <section class="container">
           <Slot />
         </section>
       </main>
-      <footer>
-        <p>Copyright 2023 Mario Life</p>
-      </footer>
     </div>
   );
 });
