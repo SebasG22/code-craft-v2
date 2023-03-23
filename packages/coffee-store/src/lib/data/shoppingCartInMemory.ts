@@ -6,20 +6,9 @@ export class ShoppingCartInMemory implements ShoppingCartRepository {
 
   save(cart: ShoppingCartEntity) {
     this.cart = cart;
-    console.warn('save', JSON.stringify(cart));
   }
 
   get(): ShoppingCartEntity {
     return this.cart;
-  }
-
-  getTotal(): number {
-    console.warn('aca', JSON.stringify(this.cart));
-    return this.cart.value.items.reduce(
-      (accumulator, currentValue) =>
-        accumulator +
-        currentValue.type.value.price.value * currentValue.quantity,
-      0
-    );
   }
 }

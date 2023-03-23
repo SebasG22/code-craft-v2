@@ -4,10 +4,31 @@ import {
   useStore,
   useStylesScoped$,
   $,
+  useContext,
+  useVisibleTask$,
 } from '@builder.io/qwik';
 import { coffee, coffee2, coffee3, coffee4 } from '../../seed';
 import payStyles from './pay.css?inline';
+import { getCoffeeControllerQwik } from '../../presentation/dependenciesLocator';
+import { CartContext } from '../../routes/layout';
+import { currency } from '../../utils';
 
+const controller = getCoffeeControllerQwik();
+
+const addItemToCart = $((id: string, state: any) => {
+  console.warn('Clicked', id);
+  controller.addItemToCart(id);
+  const cartInfo = controller.getShoppingCart();
+  state.value = cartInfo;
+});
+
+const removeItemFromCart = $((id: string, state: any) => {
+  console.warn('Clicked', id);
+  controller.removeItemFromCart(id);
+  const cartInfo = controller.getShoppingCart();
+  console.warn({cartInfo});
+  state.value = cartInfo;
+});
 export interface PayProps {
   isDisablePreview: boolean;
 }
@@ -15,22 +36,9 @@ export interface PayProps {
 export default component$((props: PayProps) => {
   useStylesScoped$(payStyles);
 
-  const coffees = useStore(
-    {
-      list: [
-        { ...coffee, showTranslate: false, translate: 'translate version' },
-        { ...coffee2, showTranslate: false, translate: 'translate version' },
-        { ...coffee3, showTranslate: false, translate: 'translate version' },
-        { ...coffee4, showTranslate: false, translate: 'translate version' },
-      ],
-    },
-    {
-      deep: true,
-    }
-  );
+  const cartContext = useContext(CartContext);
 
   const dialogRef = useSignal<HTMLDivElement>();
-  const cartCount = useSignal(1);
 
   const togglePreview = $(() => {
     if (props.isDisablePreview) return;
@@ -44,29 +52,29 @@ export default component$((props: PayProps) => {
         togglePreview();
       }}
     >
-      {cartCount.value > 0 && (
+      {cartContext.value.totalItems > 0 && (
         <ul class="cart-preview" ref={dialogRef}>
-          {coffees.list.map((item) => (
+          {cartContext.value.items.map((item) => (
             <li key={item.name} class="list-item">
               <div>
-                <span>{item.name}</span>
-                <span class="unit-desc"> x {'1'}</span>
+                <span>{item.type.name}</span>
+                <span class="unit-desc"> x {item.quantity}</span>
               </div>
               <div class="unit-controller">
                 <button
-                  aria-label={`Add one ${item.name}`}
+                  aria-label={`Add one ${item.type.name}`}
                   type="button"
                   onClick$={() => {
-                    console.warn('Add Item');
+                    addItemToCart(item.type.id, cartContext)
                   }}
                 >
                   +
                 </button>
                 <button
-                  aria-label={`Remove one ${item.name}`}
+                  aria-label={`Remove one ${item.type.name}`}
                   type="button"
                   onClick$={() => {
-                    console.warn('Remove Item');
+                    removeItemFromCart(item.type.id, cartContext);
                   }}
                 >
                   -
@@ -89,7 +97,7 @@ export default component$((props: PayProps) => {
           console.warn('Pay');
         }}
       >
-        Total: 0
+        Total: { currency(cartContext.value.totalPrice)}
       </button>
     </div>
   );

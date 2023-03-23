@@ -23,7 +23,7 @@ describe('Coffee Entity', ()=> {
             id: 'capuccino'
         });
 
-        expect(capucino.value.id.value).toContain('capuccino-');
+        expect(capucino.value.id.value).toContain('capuccino');
         expect(capucino.value.price.value).toEqual(2);
         expect(capucino.value.ingredients).toEqual([]);
     });

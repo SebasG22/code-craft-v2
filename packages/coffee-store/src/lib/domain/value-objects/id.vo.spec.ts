@@ -10,7 +10,7 @@ describe('ID Vo', ()=>{
     it('should create an ID instance when passing an specific Id value', ()=>{
         const id = Id.create("demo");
 
-        expect(id.value).toContain('demo-');
+        expect(id.value).toEqual('demo');
     });
 
     it('should not create an ID instance when passing an invalid Id value', ()=>{

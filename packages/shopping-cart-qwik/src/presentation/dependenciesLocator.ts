@@ -9,6 +9,7 @@ import {
   ShoppingCartInMemory,
   CoffeeQwikPresenter,
   CoffeeQwikController,
+  RemoveItemItemFromShoppingCartUseCase,
 } from '@code-craft/coffee-store';
 
 export const getCoffeePresenter = (view: CoffeeView) => {
@@ -43,6 +44,7 @@ export const getCoffeePresenterQwik = (view: CoffeeQwikView) => {
   );
 };
 
+let instance: CoffeeQwikController; 
 export const getCoffeeControllerQwik = () => {
   const coffeeInMemory = new CoffeeInMemory();
   const shoppingInMemory = new ShoppingCartInMemory();
@@ -52,9 +54,16 @@ export const getCoffeeControllerQwik = () => {
   const saveCoffeeItemIntoShoppingCartUseCase =
     new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
   
-  return new CoffeeQwikController(
-    getAllCoffeeUseCase,
-    getShoppingUseCase,
-    saveCoffeeItemIntoShoppingCartUseCase
-  );
+  const removeItemShopping = new RemoveItemItemFromShoppingCartUseCase(shoppingInMemory);
+  if (!instance){
+    instance = new CoffeeQwikController(
+      getAllCoffeeUseCase,
+      getShoppingUseCase,
+      saveCoffeeItemIntoShoppingCartUseCase,
+      removeItemShopping
+    );
+  }
+
+  return instance;
+
 }

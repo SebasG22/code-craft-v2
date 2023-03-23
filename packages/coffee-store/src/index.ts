@@ -6,5 +6,6 @@ export * from './lib/presentation/coffee-qwik.controller';
 export * from './lib/domain/use-cases/get-all-coffees';
 export * from './lib/domain/use-cases/get-shopping';
 export * from './lib/domain/use-cases/save-item-shopping';
+export * from './lib/domain/use-cases/remove-item-shopping';
 export * from './lib/data/coffeeInMemory';
 export * from './lib/data/shoppingCartInMemory';

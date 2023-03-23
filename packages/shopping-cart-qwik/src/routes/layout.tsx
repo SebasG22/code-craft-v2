@@ -1,33 +1,54 @@
-import { component$, createContextId, Signal, Slot, useContext, useContextProvider, useSignal, useStore, useTask$ } from '@builder.io/qwik';
+import {
+  component$,
+  createContextId,
+  noSerialize,
+  NoSerialize,
+  Signal,
+  Slot,
+  useContext,
+  useContextProvider,
+  useSignal,
+  useStore,
+  useTask$,
+  useVisibleTask$,
+} from '@builder.io/qwik';
 import Header from '../components/header/header';
+import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
+const controller = getCoffeeControllerQwik();
 
 interface CartStore {
   id: string;
   items: any[];
-  totalPrice: number; 
+  totalPrice: number;
   totalItems: number;
 }
 
-export const CartContext = createContextId<Signal<CartStore>>('Cart');
+interface ItemsList {
+  list: any[]
+}
 
+export const CartContext = createContextId<Signal<CartStore>>('Cart');
+export const ItemListContext =
+  createContextId<Signal<ItemsList>>('ItemList');
 
 export default component$(() => {
-
   const cart = useSignal<CartStore>({
     id: '',
     items: [],
     totalItems: 0,
-    totalPrice: 0
-  })
-  useContextProvider(
-    CartContext,
-    cart
-  );
+    totalPrice: 0,
+  });
+  useContextProvider(CartContext, cart);
 
-  
+  const itemList = useSignal<ItemsList>({
+    list: controller.getAllCoffees()
+  });
+
+  useContextProvider(ItemListContext, itemList);
+
   return (
     <div class="page">
-      <Inner/>
+      <Inner />
       {/* <Header totalItems={cart.value.totalItems}/> */}
       <main>
         <section class="container">
@@ -38,9 +59,8 @@ export default component$(() => {
   );
 });
 
-
-export const Inner = component$(()=>{
+export const Inner = component$(() => {
   const cart = useContext(CartContext);
 
-return <Header totalItems={cart.value.totalItems}/>
+  return <Header totalItems={cart.value.totalItems} />;
 });

@@ -22,7 +22,7 @@ describe('Shopping Cart Entity', () => {
       id: 'demo-test',
     });
 
-    expect(cart.value.id.value).toContain('demo-test-');
+    expect(cart.value.id.value).toContain('demo-test');
     expect(cart.value.items).toEqual([]);
   });
 

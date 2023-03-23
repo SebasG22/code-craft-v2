@@ -17,7 +17,7 @@ import { CoffeeQwikViewImpl } from '../presentation/coffee-qwik.view';
 import indexStyles from './index.css?inline';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
 import { currency } from '../utils';
-import { CartContext } from './layout';
+import { CartContext, ItemListContext } from './layout';
 
 const a = 'index page';
 const controller = getCoffeeControllerQwik();
@@ -25,13 +25,7 @@ const controller = getCoffeeControllerQwik();
 export default component$(() => {
   useStylesScoped$(indexStyles);
   const cartContext = useContext(CartContext);
-
-
-  const state = useSignal({
-    list: controller.getAllCoffees(),
-  });
-
-  const cart = useSignal({ id: '', items: [], totalPrice: 0, totalItems: 0 });
+  const listContext = useContext(ItemListContext);
 
   const addItemToCart = $((id: string, state: any) => {
     console.warn('Clicked', id);
@@ -56,7 +50,7 @@ export default component$(() => {
       <div>
         total {cartContext.value.totalItems}
         <ul>
-          {state.value.list.map((item, index) => (
+          {listContext.value.list.map((item, index) => (
             <li>
               <h4
                 onDblClick$={() => {
