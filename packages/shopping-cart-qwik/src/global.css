@@ -12,7 +12,6 @@ body {
   min-height: 100vh;
 }
 
-
 .geo {
   font-family: 'Geo';
 }
@@ -28,4 +27,3 @@ footer {
   text-align: center;
   flex-grow: 1;
 }
-

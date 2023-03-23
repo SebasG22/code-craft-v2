@@ -26,5 +26,15 @@ export class ShoppingCartEntity {
       return this.data;
    }
 
+   get serializeValue() {
+      return {
+        id: this.data.id.value,
+       items: this.data.items.map((item)=>({
+         type: item.type.serializeValue,
+         quantity: item.quantity
+       }))
+      };
+    }
+
 
 }

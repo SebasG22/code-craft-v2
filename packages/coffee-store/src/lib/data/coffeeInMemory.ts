@@ -4,16 +4,16 @@ import { data } from './data';
 
 export class CoffeeInMemory implements CoffeeRepository {
   coffees: CoffeeEntity[] = [];
-
+  
   constructor() {
     this.coffees = data.filter((item) => item.availability).map((item) => 
-      CoffeeEntity.create({
-        name: item.name,
-        price: item.price,
-        ingredients: item.recipe,
-      })
-    );
-  }
+    CoffeeEntity.create({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      ingredients: item.recipe,
+    }))
+}
 
   getAll(): CoffeeEntity[] {
     return this.coffees;

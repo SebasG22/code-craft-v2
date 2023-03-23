@@ -18,7 +18,7 @@ export default component$(() => {
       {!cartList.length && <p>No coffee, go add some.</p>}
       {cartList.length && (
         <div>
-          <Pay isDisablePreview={true}/>
+          <Pay isDisablePreview={true} />
           <ul class="cart-container">
             <li class="list-header">
               <div>Item</div>

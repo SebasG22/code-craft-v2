@@ -1005,10 +1005,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@builder.io/qwik-city@^0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-0.6.5.tgz#061af40c0ac2244c4c04997df405e4c84adc4a78"
-  integrity sha512-XGEoF2Q9tBeofjwtqxyZjA+3V50WDJTfhDjlHD1w2ShqyAZOnzxySrgznLfGG86H5YqOPNW9cH5uZ+ZINssYuA==
+"@builder.io/qwik-city@0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-0.6.6.tgz#3dda334e1e622f40eca4e26a6b97be4f276f1b30"
+  integrity sha512-khqveboSCnmFCDzBq2OxNkplu6ngS64CNRu4RQI08e76uWjov+Y0xahYCsZuZP5Dp1A/Vji8d4MY4cLL+c0lZA==
   dependencies:
     "@mdx-js/mdx" "2.3.0"
     "@types/mdx" "2.0.3"
@@ -1016,7 +1016,7 @@
     vfile "5.3.7"
     zod "^3.21.4"
 
-"@builder.io/qwik@^0.23.0":
+"@builder.io/qwik@0.23.0":
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-0.23.0.tgz#b25a39bc28aaddc64dce00dfb672f4f6324794f5"
   integrity sha512-srbA4o9KyeGXA0fUibZW7I6iasjYhpBlp1Iq74dLTB4Py66wfazpekZ+qi57XcuSj3cBPf/Rsz/yxvQx5DwM2g==
@@ -8931,6 +8931,11 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   integrity sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
   dependencies:
     find-up "^4.0.0"
+
+pocketbase@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/pocketbase/-/pocketbase-0.12.1.tgz#f3655ca9d8b28729401fc6b55552e4708d4a04ed"
+  integrity sha512-kihThVla/JontCGA2zVGuxk1vWtz/yt7FqnL241oxd+w7RBVNzLIRKN6GolnY9DGOekNmFRb57CL24sbUm4wJA==
 
 postcss-calc@^8.2.3:
   version "8.2.4"

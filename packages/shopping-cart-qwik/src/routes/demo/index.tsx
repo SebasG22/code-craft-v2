@@ -1,30 +1,26 @@
-import { component$, noSerialize, useSignal, useStore, useStylesScoped$, useTask$, useVisibleTask$ } from "@builder.io/qwik";
-import Cup from "../components/cup/cup";
-import Pay from "../components/pay/pay";
-import { CoffeeQwikViewImpl } from "../presentation/coffee-qwik.view";
-import indexStyles from './index.css?inline';
+import { component$, useSignal, useStore, useTask$, useVisibleTask$ } from "@builder.io/qwik";
+import Cup from "../../components/cup/cup";
+import Pay from "../../components/pay/pay";
+import { CoffeeQwikViewImpl } from "../../presentation/coffee-qwik.view";
 
-const a ='index page';
+const a ='hey';
 const view = new CoffeeQwikViewImpl();
 
 export default component$(()=>{
-  useStylesScoped$(indexStyles);
-
     
-  const state = useStore<{name: string, list: any[], cart: []}>({
-    name: a,
-    list: [],
-    cart: []
-})
+    const state = useStore<{name: string, list: any[], cart: []}>({
+        name: a,
+        list: [],
+        cart: []
+    })
+    
+    useTask$(()=>{
+        view.presenter.showCoffees(state);
+    });
 
-useTask$(()=>{
-    view.presenter.showCoffees(state);
-});
-
-useVisibleTask$(()=>{
-  console.warn("solo en el cliente");
-  //  view.start(state);
-})
+    useVisibleTask$(()=>{
+      view.start(state);
+    })
    
     const selectedCoffee = useSignal<string>();
     const modalRef = useSignal<HTMLDialogElement>();
@@ -54,7 +50,6 @@ useVisibleTask$(()=>{
                   preventdefault:contextmenu
                   onClick$={() => {
                     console.warn('Clicked', item.id);
-                    view.presenter.addItemShoppingCart(item.id);
                     // view.presenter.addItemShoppingCart(item.id);
                   }}
                   onContextMenu$={(e, el) => {

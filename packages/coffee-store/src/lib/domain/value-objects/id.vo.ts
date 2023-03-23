@@ -14,15 +14,14 @@ export class Id {
     const randomNum = Math.random().toString(36).substring(2, 8);
 
     return new Id({
-      value: `${timestamp}-${randomNum}`,
+      value: `${timestamp}${randomNum}`,
     });
   }
 
   static create(id: string){
-    const randomNum = Math.random().toString(36).substring(2, 8);
     if(id.length > 0 ){
       return new Id({
-        value: `${id}-${randomNum}`,
+        value: `${id}`,
       });
     }
 
