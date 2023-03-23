@@ -7,7 +7,7 @@ import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-
 
 export interface CoffeeQwikView {
   showCoffees(coffes: CoffeeEntity[], state: any): void;
-  showShoppingCart(cart: ShoppingCartEntity, state:any ): void;
+  showShoppingCart(cart: ShoppingCartEntity, state: any): void;
   // addItemShoppingCart(id: string): void;
   // listCoffees(coffees: CoffeeEntity[]): void;
   // listShoppingCartItems(cart: ShoppingCartEntity, total: number): Promise<void>;
@@ -34,14 +34,13 @@ export class CoffeeQwikPresenter {
     this.view.showCoffees(coffees, state);
   }
 
-
   addItemShoppingCart(id: string) {
-      const coffees = this.getAllCoffeeUseCase.execute() as CoffeeEntity[];
-      const coffee = this.getCoffeeEntity(coffees, id);
-      if (coffee) {
-        this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
-        const cart = this.getShoopingCartUseCase.execute();
-        this.view.showShoppingCart(cart);
-      }
+    const coffees = this.getAllCoffeeUseCase.execute() as CoffeeEntity[];
+    const coffee = this.getCoffeeEntity(coffees, id);
+    if (coffee) {
+      this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
+      const cart = this.getShoopingCartUseCase.execute();
+      this.view.showShoppingCart(cart);
+    }
   }
 }

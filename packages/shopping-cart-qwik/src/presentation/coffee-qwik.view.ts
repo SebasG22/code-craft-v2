@@ -4,27 +4,25 @@ import { getCoffeePresenterQwik } from './dependenciesLocator';
 
 export type CoffeeQwikstate = {
   name: string;
-   list?: any[];
+  list?: any[];
   cart: any;
 };
 
 export class CoffeeQwikViewImpl implements CoffeeQwikView {
   public presenter = getCoffeePresenterQwik(this);
   public state?: CoffeeQwikstate;
-  start(qwikState: CoffeeQwikstate){
+  start(qwikState: CoffeeQwikstate) {
     this.state = qwikState;
   }
   showCoffees(coffees: CoffeeEntity[], qwikState: CoffeeQwikstate) {
     const serialize = coffees.map((coffee) => coffee.serializeValue);
-      qwikState.list = serialize
-  
+    qwikState.list = serialize;
   }
 
   showShoppingCart(cart: ShoppingCartEntity): void {
     const serialize = cart.serializeValue;
-    if(this.state){
+    if (this.state) {
       this.state.cart = serialize;
     }
-
   }
 }

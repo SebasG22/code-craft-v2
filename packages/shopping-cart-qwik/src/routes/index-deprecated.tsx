@@ -15,7 +15,6 @@
 // import { coffee, coffee2, coffee3, coffee4 } from '../seed';
 // import indexStyles from './index.css?inline';
 
-
 // const view = new CoffeeQwikViewImpl();
 // const a = view.presenter.showCoffees();
 

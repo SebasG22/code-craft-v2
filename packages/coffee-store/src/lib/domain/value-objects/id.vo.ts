@@ -18,17 +18,17 @@ export class Id {
     });
   }
 
-  static create(id: string){
-    if(id.length > 0 ){
+  static create(id: string) {
+    if (id.length > 0) {
       return new Id({
         value: `${id}`,
       });
     }
 
-    throw new Error("Cannot generate an Instance from an empty id");
+    throw new Error('Cannot generate an Instance from an empty id');
   }
 
-  get value(){
+  get value() {
     return this.data.value;
   }
 }

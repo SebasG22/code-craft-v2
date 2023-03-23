@@ -1,6 +1,6 @@
 export const data = [
   {
-    id:'12334',
+    id: '12334',
     name: 'Espresso',
     price: 40,
     inStore: false,

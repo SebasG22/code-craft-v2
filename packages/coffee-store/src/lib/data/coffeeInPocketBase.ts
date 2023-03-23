@@ -3,13 +3,12 @@
 // import { data } from './data';
 // import PocketBase from 'pocketbase';
 
-
 // export class CoffeeInPocketBase implements CoffeeRepository {
 //   pb = new PocketBase('https://brave-continent.pockethost.io');
 //   coffees: CoffeeEntity[] = [];
 
 //   constructor() {
-//     data.filter((item) => item.availability).map((item) => 
+//     data.filter((item) => item.availability).map((item) =>
 //     CoffeeEntity.create({
 //       id: item.id,
 //       name: item.name,
