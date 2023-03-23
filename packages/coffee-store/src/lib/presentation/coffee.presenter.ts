@@ -2,7 +2,6 @@ import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { ShoppingCartEntity } from '../domain/entities/shopping-cart.entity';
 import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
 import { GetShoppingUseCase } from '../domain/use-cases/get-shopping';
-import { GetShoppingTotalUseCase } from '../domain/use-cases/get-shopping-total';
 import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
 export interface CoffeeView {
@@ -23,7 +22,6 @@ export class CoffeePresenter {
     public view: CoffeeView,
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShoopingCartUseCase: GetShoppingUseCase,
-    public getShoppingTotalUseCase: GetShoppingTotalUseCase,
     public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase
   ) {}
 
@@ -51,7 +49,7 @@ export class CoffeePresenter {
   }
 
   calculateTotal() {
-    const total = this.getShoppingTotalUseCase.execute();
+    const total = 0;
     this.view.showEndMessage(`Your total is ${total}`);
   }
 

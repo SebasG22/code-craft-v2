@@ -1,17 +1,34 @@
-import { component$, Slot } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { component$, createContextId, Signal, Slot, useContext, useContextProvider, useSignal, useStore, useTask$ } from '@builder.io/qwik';
 import Header from '../components/header/header';
 
-export const useServerTimeLoader = routeLoader$(() => {
-  return {
-    date: new Date().toISOString(),
-  };
-});
+interface CartStore {
+  id: string;
+  items: any[];
+  totalPrice: number; 
+  totalItems: number;
+}
+
+export const CartContext = createContextId<Signal<CartStore>>('Cart');
+
 
 export default component$(() => {
+
+  const cart = useSignal<CartStore>({
+    id: '',
+    items: [],
+    totalItems: 0,
+    totalPrice: 0
+  })
+  useContextProvider(
+    CartContext,
+    cart
+  );
+
+  
   return (
     <div class="page">
-      <Header />
+      <Inner/>
+      {/* <Header totalItems={cart.value.totalItems}/> */}
       <main>
         <section class="container">
           <Slot />
@@ -19,4 +36,11 @@ export default component$(() => {
       </main>
     </div>
   );
+});
+
+
+export const Inner = component$(()=>{
+  const cart = useContext(CartContext);
+
+return <Header totalItems={cart.value.totalItems}/>
 });

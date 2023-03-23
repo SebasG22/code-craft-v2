@@ -2,7 +2,10 @@ import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import { Link, useLocation } from '@builder.io/qwik-city';
 import headerStyles from './header.css?inline';
 
-export default component$(() => {
+export interface HeaderProps {
+  totalItems: number;
+}
+export default component$((props: HeaderProps) => {
   const { scopeId } = useStylesScoped$(headerStyles);
   const pathname = useLocation().url.pathname;
 
@@ -25,7 +28,7 @@ export default component$(() => {
           }`}
           href="/cart"
         >
-          cart ({'1'})
+          cart ({props.totalItems})
         </Link>
       </li>
       <li>

@@ -9,6 +9,7 @@ export const data = [
     recipe: [{ name: 'espresso', quantity: 30 }],
   },
   {
+    id: '12335',
     name: 'Espresso Macchiato',
     price: 12,
     inStore: true,
@@ -20,6 +21,7 @@ export const data = [
     ],
   },
   {
+    id: '12336',
     name: 'Cappuccino',
     price: 19,
     inStore: true,
@@ -32,6 +34,7 @@ export const data = [
     ],
   },
   {
+    id: '12337',
     name: 'Mocha',
     price: 8,
     inStore: true,
@@ -45,6 +48,7 @@ export const data = [
     ],
   },
   {
+    id: '12338',
     name: 'Flat White',
     price: 18,
     inStore: true,
@@ -56,6 +60,7 @@ export const data = [
     ],
   },
   {
+    id: '12339',
     name: 'Americano',
     price: 7,
     inStore: true,
@@ -67,6 +72,7 @@ export const data = [
     ],
   },
   {
+    id: '12340',
     name: 'Cafe Latte',
     price: 16,
     inStore: true,
@@ -79,6 +85,7 @@ export const data = [
     ],
   },
   {
+    id: '12341',
     name: 'Espresso Con Panna',
     price: 14,
     inStore: true,
@@ -90,6 +97,7 @@ export const data = [
     ],
   },
   {
+    id: '12342',
     name: 'Cafe Breve',
     price: 15,
     inStore: true,
@@ -103,6 +111,7 @@ export const data = [
     ],
   },
   {
+    id: '12343',
     name: '(Discounted) Mocha',
     price: 4,
     inStore: true,

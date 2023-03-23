@@ -25,6 +25,24 @@ export class ShoppingCartEntity {
     return this.data;
   }
 
+  get totalPrice(){
+    return this.data.items.reduce(
+      (accumulator, currentValue) =>
+        accumulator +
+        currentValue.type.value.price.value * currentValue.quantity,
+      0
+    );
+  }
+
+  get totalItems(){
+    return this.data.items.reduce(
+      (accumulator, currentValue) =>
+        accumulator +
+        currentValue.quantity,
+      0
+    );
+  }
+
   get serializeValue() {
     return {
       id: this.data.id.value,
@@ -32,6 +50,8 @@ export class ShoppingCartEntity {
         type: item.type.serializeValue,
         quantity: item.quantity,
       })),
+      totalPrice: this.totalPrice,
+      totalItems: this.totalItems
     };
   }
 }

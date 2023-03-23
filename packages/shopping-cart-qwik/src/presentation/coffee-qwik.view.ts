@@ -10,16 +10,26 @@ export type CoffeeQwikstate = {
 
 export class CoffeeQwikViewImpl implements CoffeeQwikView {
   public presenter = getCoffeePresenterQwik(this);
-  public state?: CoffeeQwikstate;
+  public state?: CoffeeQwikstate = {
+    cart: {},
+    list: [],
+    name: ''
+  };
   start(qwikState: CoffeeQwikstate) {
-    this.state = qwikState;
+    if(qwikState){
+      this.state = qwikState;
+    }
   }
-  showCoffees(coffees: CoffeeEntity[], qwikState: CoffeeQwikstate) {
+  showCoffees(coffees: CoffeeEntity[]) {
     const serialize = coffees.map((coffee) => coffee.serializeValue);
-    qwikState.list = serialize;
+    console.warn('este es coffesss', {state: this.state});
+    if (this.state) {
+    this.state.list = serialize;
+    }
   }
 
   showShoppingCart(cart: ShoppingCartEntity): void {
+    console.warn('este es', {state: this.state});
     const serialize = cart.serializeValue;
     if (this.state) {
       this.state.cart = serialize;
