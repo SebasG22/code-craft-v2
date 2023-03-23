@@ -22,7 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tslib": "^2.3.0",
-    "undici": "^5.21.0"
+    "undici": "^5.21.0",
+    "vercel": "^28.18.1"
   },
   "devDependencies": {
     "@nrwl/cypress": "15.8.6",

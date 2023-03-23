@@ -12,6 +12,14 @@
       }
     },
 
+    "build.vercel": {
+      "dependsOn": ["build.client", "build.ssr --configuration=vercel"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["echo 'finished build'"]
+      }
+    },
+
     "build.client": {
       "executor": "@nrwl/vite:build",
       "options": {
@@ -28,6 +36,10 @@
       "configurations": {
         "preview": {
           "ssr": "src/entry.preview.tsx",
+          "mode": "production"
+        },
+        "vercel": {
+          "ssr": "src/entry.vercel-edge.tsx",
           "mode": "production"
         }
       }
