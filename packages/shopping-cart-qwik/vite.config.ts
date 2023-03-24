@@ -22,10 +22,10 @@ export default defineConfig({
     qwikCity(),
     qwikVite({
       client: {
-        outDir: '../../dist/apps/shopping-cart-qwik/client',
+        outDir: '../../dist/packages/shopping-cart-qwik/client',
       },
       ssr: {
-        outDir: '../../dist/apps/shopping-cart-qwik/server',
+        outDir: '../../dist/packages/shopping-cart-qwik/server',
       },
     }),
     viteTsConfigPaths({
