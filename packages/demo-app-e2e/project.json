@@ -1,0 +1,52 @@
+{
+  "name": "demo-app-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/demo-app-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nxkit/playwright:test",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/demo-app-e2e/test-results",
+        "playwrightConfig": "packages/demo-app-e2e/playwright.config.ts",
+        "devServerTarget": "demo-app:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "demo-app:serve:production"
+        }
+      }
+    },
+    "debug": {
+      "executor": "@nxkit/playwright:test",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/demo-app-e2e/test-results",
+        "playwrightConfig": "packages/demo-app-e2e/playwright.config.ts",
+        "devServerTarget": "demo-app:serve",
+        "debug": true
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "demo-app:serve:production"
+        }
+      }
+    },
+    "show-report": {
+      "executor": "@nxkit/playwright:show-report",
+      "options": {
+        "reportPath": "dist/packages/demo-app-e2e/playwright-report"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/demo-app-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["demo-app"]
+}
