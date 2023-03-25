@@ -1,28 +1,26 @@
 import {
   component$,
   useSignal,
-  useStore,
   useStylesScoped$,
   $,
   useContext,
-  useVisibleTask$,
+  Signal,
 } from '@builder.io/qwik';
-import { coffee, coffee2, coffee3, coffee4 } from '../../seed';
 import payStyles from './pay.css?inline';
 import { getCoffeeControllerQwik } from '../../presentation/dependenciesLocator';
-import { CartContext } from '../../routes/layout';
+import { CartContext, CartStore } from '../../routes/layout';
 import { currency } from '../../utils';
 
 const controller = getCoffeeControllerQwik();
 
-const addItemToCart = $((id: string, state: any) => {
+const addItemToCart = $((id: string, state: Signal<CartStore>) => {
   console.warn('Clicked', id);
   controller.addItemToCart(id);
   const cartInfo = controller.getShoppingCart();
   state.value = cartInfo;
 });
 
-const removeItemFromCart = $((id: string, state: any) => {
+const removeItemFromCart = $((id: string, state: Signal<CartStore>) => {
   console.warn('Clicked', id);
   controller.removeItemFromCart(id);
   const cartInfo = controller.getShoppingCart();
@@ -55,7 +53,7 @@ export default component$((props: PayProps) => {
       {cartContext.value.totalItems > 0 && (
         <ul class="cart-preview" ref={dialogRef}>
           {cartContext.value.items.map((item) => (
-            <li key={item.name} class="list-item">
+            <li key={item.type.name} class="list-item">
               <div>
                 <span>{item.type.name}</span>
                 <span class="unit-desc"> x {item.quantity}</span>

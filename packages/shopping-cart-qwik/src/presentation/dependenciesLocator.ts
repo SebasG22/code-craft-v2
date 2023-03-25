@@ -1,15 +1,13 @@
 import {
-  CoffeePresenter,
-  CoffeeView,
-  CoffeeQwikView,
   GetAllCoffeesUseCase,
   SaveCoffeeItemIntoShoppingCartUseCase,
   CoffeeInMemory,
   GetShoppingUseCase,
   ShoppingCartInMemory,
-  CoffeeQwikPresenter,
   CoffeeQwikController,
   RemoveItemItemFromShoppingCartUseCase,
+  CoffeeView,
+  CoffeePresenter,
 } from '@code-craft/coffee-store';
 
 export const getCoffeePresenter = (view: CoffeeView) => {
@@ -28,21 +26,7 @@ export const getCoffeePresenter = (view: CoffeeView) => {
   );
 };
 
-export const getCoffeePresenterQwik = (view: CoffeeQwikView) => {
-  const coffeeInMemory = new CoffeeInMemory();
-  const shoppingInMemory = new ShoppingCartInMemory();
 
-  const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
-  const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
-  const saveCoffeeItemIntoShoppingCartUseCase =
-    new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
-  return new CoffeeQwikPresenter(
-    view,
-    getAllCoffeeUseCase,
-    getShoppingUseCase,
-    saveCoffeeItemIntoShoppingCartUseCase
-  );
-};
 
 let instance: CoffeeQwikController; 
 export const getCoffeeControllerQwik = () => {

@@ -11,32 +11,39 @@ import Header from '../components/header/header';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
 const controller = getCoffeeControllerQwik();
 
-interface CartStore {
+export interface CartStore {
   id: string;
-  items: any[];
+  items: {
+    type: Item;
+    quantity: number;
+  }[];
   totalPrice: number;
   totalItems: number;
 }
-
-interface ItemsList {
-  list: any[]
+export interface Item {
+  id: string;
+    name: string;
+    price: number;
+    ingredients: {
+      name: string;
+      quantity: number;
+    }[];
+}
+export interface ItemsList {
+  list: Item[];
 }
 
 export const CartContext = createContextId<Signal<CartStore>>('Cart');
-export const ItemListContext =
-  createContextId<Signal<ItemsList>>('ItemList');
+export const ItemListContext = createContextId<Signal<ItemsList>>('ItemList');
 
 export default component$(() => {
   const cart = useSignal<CartStore>({
-    id: '',
-    items: [],
-    totalItems: 0,
-    totalPrice: 0,
+    ...controller.getShoppingCart()
   });
   useContextProvider(CartContext, cart);
 
   const itemList = useSignal<ItemsList>({
-    list: controller.getAllCoffees()
+    list: controller.getAllCoffees(),
   });
 
   useContextProvider(ItemListContext, itemList);
@@ -44,7 +51,6 @@ export default component$(() => {
   return (
     <div class="page">
       <Inner />
-      {/* <Header totalItems={cart.value.totalItems}/> */}
       <main>
         <section class="container">
           <Slot />

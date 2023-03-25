@@ -4,13 +4,14 @@ import {
   useSignal,
   useStylesScoped$,
   $,
+  Signal,
 } from '@builder.io/qwik';
 import Cup from '../components/cup/cup';
 import Pay from '../components/pay/pay';
 import indexStyles from './index.css?inline';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
 import { currency } from '../utils';
-import { CartContext, ItemListContext } from './layout';
+import { CartContext, CartStore, Item, ItemListContext } from './layout';
 
 const controller = getCoffeeControllerQwik();
 
@@ -19,29 +20,21 @@ export default component$(() => {
   const cartContext = useContext(CartContext);
   const listContext = useContext(ItemListContext);
 
-  const addItemToCart = $((id: string, state: any) => {
+  const addItemToCart = $((id: string, state: Signal<CartStore>) => {
     console.warn('Clicked', id);
     controller.addItemToCart(id);
     const cartInfo = controller.getShoppingCart();
     state.value = cartInfo;
   });
 
-  const selectedCoffee = useSignal<{
-    id: string;
-    name: string;
-    price: number;
-    ingredients: {
-      name: string;
-      quantity: number;
-    }[];
-  }>();
+  const selectedCoffee = useSignal<Item>();
   const modalRef = useSignal<HTMLDialogElement>();
 
   return (
     <>
       <div>
         <ul>
-          {listContext.value.list.map((item, index) => (
+          {listContext.value.list.map((item) => (
             <li>
               <h4
                 onDblClick$={() => {
@@ -59,7 +52,7 @@ export default component$(() => {
                 onClick$={() => {
                   addItemToCart(item.id, cartContext);
                 }}
-                onContextMenu$={(e, el) => {
+                onContextMenu$={() => {
                   console.warn('Context Menu');
                   selectedCoffee.value = item;
                   modalRef.value?.showModal();
