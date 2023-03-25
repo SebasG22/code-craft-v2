@@ -7,10 +7,10 @@ import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-
 export interface CoffeeView {
   showMainMenu(): Promise<string>;
   listCoffees(coffees: CoffeeEntity[]): void;
-  listShoppingCartItems(cart: ShoppingCartEntity, total: number): Promise<void>;
+  listShoppingCartItems(cart: ShoppingCartEntity): Promise<void>;
   addCoffeeToOrder(
     coffees: CoffeeEntity[]
-  ): Promise<{ data: { value: string } }[] | void>;
+  ): Promise<{ data: { value: string } }[]>;
   confirmOperation(message: string): Promise<boolean>;
   cancelOperation(message: string): void;
   showEndMessage(message: string): void;
@@ -21,7 +21,7 @@ export class CoffeePresenter {
   constructor(
     public view: CoffeeView,
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
-    public getShoopingCartUseCase: GetShoppingUseCase,
+    public getShopingCartUseCase: GetShoppingUseCase,
     public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase
   ) {}
 
@@ -38,9 +38,8 @@ export class CoffeePresenter {
     // this.showSelect();
   }
   showCart() {
-    const cart = this.getShoopingCartUseCase.execute();
-    const total = this.getShoppingTotalUseCase.execute();
-    this.view.listShoppingCartItems(cart, total);
+    const cart = this.getShopingCartUseCase.execute();
+    this.view.listShoppingCartItems(cart);
   }
 
   showAllCoffees() {
