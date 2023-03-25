@@ -18,7 +18,7 @@ class ShoppingCartLocal implements ShoppingCartRepository {
   }
 }
 
-describe.only('Remove Item Shopping Use Case', () => {
+describe('Remove Item Shopping Use Case', () => {
   it('should remove the item if quantity is 0', () => {
     const cart = ShoppingCartEntity.create({
       items: [
