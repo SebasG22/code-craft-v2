@@ -87,13 +87,12 @@ export class CoffeeTerminalView implements CoffeeView {
 
   async listShoppingCartItems(
     cart: ShoppingCartEntity,
-    total: number
   ): Promise<void> {
     if (cart.value.items.length > 0) {
       cart.value.items.forEach((item) => {
         note(`Name: ${item.type.value.name} - Quantity: ${item.quantity}`);
       });
-      note(`Total: ${total} USD`);
+      note(`Total: ${cart.totalPrice} USD`);
 
       // this.presenter.calculateTotal();
       await this.presenter.start();
