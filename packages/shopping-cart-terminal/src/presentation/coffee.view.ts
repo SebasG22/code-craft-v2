@@ -85,9 +85,7 @@ export class CoffeeTerminalView implements CoffeeView {
     }
   }
 
-  async listShoppingCartItems(
-    cart: ShoppingCartEntity,
-  ): Promise<void> {
+  async listShoppingCartItems(cart: ShoppingCartEntity): Promise<void> {
     if (cart.value.items.length > 0) {
       cart.value.items.forEach((item) => {
         note(`Name: ${item.type.value.name} - Quantity: ${item.quantity}`);
