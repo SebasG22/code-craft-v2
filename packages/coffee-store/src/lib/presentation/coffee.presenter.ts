@@ -2,13 +2,12 @@ import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { ShoppingCartEntity } from '../domain/entities/shopping-cart.entity';
 import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
 import { GetShoppingUseCase } from '../domain/use-cases/get-shopping';
-import { GetShoppingTotalUseCase } from '../domain/use-cases/get-shopping-total';
 import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
 export interface CoffeeView {
   showMainMenu(): Promise<string>;
   listCoffees(coffees: CoffeeEntity[]): void;
-  listShoppingCartItems(cart: ShoppingCartEntity, total: number): Promise<void>;
+  listShoppingCartItems(cart: ShoppingCartEntity): Promise<void>;
   addCoffeeToOrder(
     coffees: CoffeeEntity[]
   ): Promise<{ data: { value: string } }[]>;
@@ -22,27 +21,25 @@ export class CoffeePresenter {
   constructor(
     public view: CoffeeView,
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
-    public getShoopingCartUseCase: GetShoppingUseCase,
-    public getShoppingTotalUseCase: GetShoppingTotalUseCase,
+    public getShopingCartUseCase: GetShoppingUseCase,
     public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase
   ) {}
 
   async start() {
     const selection = await this.view.showMainMenu();
-    switch(selection){
-      case "shopping-cart": 
-          this.showCart();
-          return ;
-      case "coffee-list":
-          this.showSelect();
-          return ;    
+    switch (selection) {
+      case 'shopping-cart':
+        this.showCart();
+        return;
+      case 'coffee-list':
+        this.showSelect();
+        return;
     }
     // this.showSelect();
   }
-  showCart(){
-    const cart = this.getShoopingCartUseCase.execute();
-    const total = this.getShoppingTotalUseCase.execute();
-    this.view.listShoppingCartItems(cart, total);
+  showCart() {
+    const cart = this.getShopingCartUseCase.execute();
+    this.view.listShoppingCartItems(cart);
   }
 
   showAllCoffees() {
@@ -50,9 +47,9 @@ export class CoffeePresenter {
     this.view.listCoffees(coffees);
   }
 
-  calculateTotal(){
-    const total = this.getShoppingTotalUseCase.execute(); 
-    this.view.showEndMessage(`Your total is ${total}`)
+  calculateTotal() {
+    const total = 0;
+    this.view.showEndMessage(`Your total is ${total}`);
   }
 
   async showSelect() {
@@ -65,12 +62,15 @@ export class CoffeePresenter {
       );
     }
 
-    selection.forEach((data)=>{
-       const coffee = this.getCoffeeEntity(coffees, data.data.value) as CoffeeEntity
-       this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
-      });
+    selection.forEach((data) => {
+      const coffee = this.getCoffeeEntity(
+        coffees,
+        data.data.value
+      ) as CoffeeEntity;
+      this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
+    });
 
-      this.start();
+    this.start();
   }
 
   getCoffeeEntity(coffees: CoffeeEntity[], id: string) {

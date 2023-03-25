@@ -5,30 +5,39 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "dependsOn": ["build.client", "build.ssr"],
-      "executor": "nx:run-commands",
+      "executor": "qwik-nx:build",
       "options": {
-        "commands": ["echo 'finished build'"]
+        "runSequence": [
+          "shopping-cart-qwik:build.client",
+          "shopping-cart-qwik:build.ssr"
+        ],
+        "outputPath": "dist/packages/shopping-cart-qwik"
+      },
+      "configurations": {
+        "preview": {},
+        "production": {}
       }
     },
-
     "build.client": {
       "executor": "@nrwl/vite:build",
       "options": {
-        "outputPath": "dist/packages/shopping-car-qwik",
-        "configFile": "packages/shopping-car-qwik/vite.config.ts"
+        "outputPath": "dist/packages/shopping-cart-qwik",
+        "configFile": "packages/shopping-cart-qwik/vite.config.ts"
       }
     },
     "build.ssr": {
       "executor": "@nrwl/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/packages/shopping-car-qwik"
+        "outputPath": "dist/packages/shopping-cart-qwik"
       },
       "configurations": {
         "preview": {
           "ssr": "src/entry.preview.tsx",
           "mode": "production"
+        },
+        "production": {
+          "configFile": "packages/shopping-cart-qwik/adapters/cloudflare-pages/vite.config.ts"
         }
       }
     },
@@ -37,6 +46,14 @@
       "options": {
         "buildTarget": "shopping-cart-qwik:build",
         "port": 4300
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["../../coverage/packages/shopping-cart-qwik"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/shopping-cart-qwik"
       }
     },
     "serve": {
@@ -51,15 +68,7 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "packages/shopping-car-qwik"
-      }
-    },
-    "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/packages/shopping-cart-qwik"],
-      "options": {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/packages/shopping-cart-qwik"
+        "cwd": "packages/shopping-cart-qwik"
       }
     },
     "lint": {
@@ -67,6 +76,26 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/shopping-cart-qwik/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "deploy": {
+      "executor": "@k11r/nx-cloudflare-wrangler:deploy-page",
+      "options": {
+        "dist": "dist/packages/shopping-cart-qwik/client"
+      },
+      "dependsOn": ["build-cloudflare"]
+    },
+    "preview-cloudflare": {
+      "executor": "@k11r/nx-cloudflare-wrangler:serve-page",
+      "options": {
+        "dist": "dist/packages/shopping-cart-qwik/client"
+      },
+      "dependsOn": ["build-cloudflare"]
+    },
+    "build-cloudflare": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx nx run shopping-cart-qwik:build:production"
       }
     }
   },
