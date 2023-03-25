@@ -25,7 +25,7 @@ export class ShoppingCartEntity {
     return this.data;
   }
 
-  get totalPrice(){
+  get totalPrice() {
     return this.data.items.reduce(
       (accumulator, currentValue) =>
         accumulator +
@@ -34,11 +34,9 @@ export class ShoppingCartEntity {
     );
   }
 
-  get totalItems(){
+  get totalItems() {
     return this.data.items.reduce(
-      (accumulator, currentValue) =>
-        accumulator +
-        currentValue.quantity,
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
       0
     );
   }
@@ -51,7 +49,7 @@ export class ShoppingCartEntity {
         quantity: item.quantity,
       })),
       totalPrice: this.totalPrice,
-      totalItems: this.totalItems
+      totalItems: this.totalItems,
     };
   }
 }

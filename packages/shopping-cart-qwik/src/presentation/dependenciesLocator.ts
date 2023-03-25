@@ -26,9 +26,7 @@ export const getCoffeePresenter = (view: CoffeeView) => {
   );
 };
 
-
-
-let instance: CoffeeQwikController; 
+let instance: CoffeeQwikController;
 export const getCoffeeControllerQwik = () => {
   const coffeeInMemory = new CoffeeInMemory();
   const shoppingInMemory = new ShoppingCartInMemory();
@@ -37,9 +35,11 @@ export const getCoffeeControllerQwik = () => {
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
   const saveCoffeeItemIntoShoppingCartUseCase =
     new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
-  
-  const removeItemShopping = new RemoveItemItemFromShoppingCartUseCase(shoppingInMemory);
-  if (!instance){
+
+  const removeItemShopping = new RemoveItemItemFromShoppingCartUseCase(
+    shoppingInMemory
+  );
+  if (!instance) {
     instance = new CoffeeQwikController(
       getAllCoffeeUseCase,
       getShoppingUseCase,
@@ -49,5 +49,4 @@ export const getCoffeeControllerQwik = () => {
   }
 
   return instance;
-
-}
+};

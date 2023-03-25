@@ -22,12 +22,12 @@ export interface CartStore {
 }
 export interface Item {
   id: string;
+  name: string;
+  price: number;
+  ingredients: {
     name: string;
-    price: number;
-    ingredients: {
-      name: string;
-      quantity: number;
-    }[];
+    quantity: number;
+  }[];
 }
 export interface ItemsList {
   list: Item[];
@@ -38,7 +38,7 @@ export const ItemListContext = createContextId<Signal<ItemsList>>('ItemList');
 
 export default component$(() => {
   const cart = useSignal<CartStore>({
-    ...controller.getShoppingCart()
+    ...controller.getShoppingCart(),
   });
   useContextProvider(CartContext, cart);
 

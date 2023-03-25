@@ -24,7 +24,7 @@ const removeItemFromCart = $((id: string, state: Signal<CartStore>) => {
   console.warn('Clicked', id);
   controller.removeItemFromCart(id);
   const cartInfo = controller.getShoppingCart();
-  console.warn({cartInfo});
+  console.warn({ cartInfo });
   state.value = cartInfo;
 });
 export interface PayProps {
@@ -63,7 +63,7 @@ export default component$((props: PayProps) => {
                   aria-label={`Add one ${item.type.name}`}
                   type="button"
                   onClick$={() => {
-                    addItemToCart(item.type.id, cartContext)
+                    addItemToCart(item.type.id, cartContext);
                   }}
                 >
                   +
@@ -95,7 +95,7 @@ export default component$((props: PayProps) => {
           console.warn('Pay');
         }}
       >
-        Total: { currency(cartContext.value.totalPrice)}
+        Total: {currency(cartContext.value.totalPrice)}
       </button>
     </div>
   );

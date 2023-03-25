@@ -45,7 +45,7 @@ export default component$(() => {
                 {/* {item.showTranslate ? item.translate : item.name} */}
                 {item.name}
                 <br />
-                <small>{ currency(item.price)}</small>
+                <small>{currency(item.price)}</small>
               </h4>
               <div
                 preventdefault:contextmenu
@@ -74,7 +74,7 @@ export default component$(() => {
           <button
             onClick$={() => {
               console.warn('Clicked Dialog');
-              if(selectedCoffee.value?.id){
+              if (selectedCoffee.value?.id) {
                 addItemToCart(selectedCoffee.value.id, cartContext);
               }
             }}
