@@ -1,16 +1,11 @@
 import {
   component$,
   createContextId,
-  noSerialize,
-  NoSerialize,
   Signal,
   Slot,
   useContext,
   useContextProvider,
   useSignal,
-  useStore,
-  useTask$,
-  useVisibleTask$,
 } from '@builder.io/qwik';
 import Header from '../components/header/header';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';

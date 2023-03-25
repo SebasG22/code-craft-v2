@@ -1,25 +1,17 @@
 import {
   component$,
-  createContextId,
-  noSerialize,
   useContext,
-  useContextProvider,
   useSignal,
-  useStore,
   useStylesScoped$,
   $,
-  useTask$,
-  useVisibleTask$,
 } from '@builder.io/qwik';
 import Cup from '../components/cup/cup';
 import Pay from '../components/pay/pay';
-import { CoffeeQwikViewImpl } from '../presentation/coffee-qwik.view';
 import indexStyles from './index.css?inline';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
 import { currency } from '../utils';
 import { CartContext, ItemListContext } from './layout';
 
-const a = 'index page';
 const controller = getCoffeeControllerQwik();
 
 export default component$(() => {
@@ -48,7 +40,6 @@ export default component$(() => {
   return (
     <>
       <div>
-        total {cartContext.value.totalItems}
         <ul>
           {listContext.value.list.map((item, index) => (
             <li>
