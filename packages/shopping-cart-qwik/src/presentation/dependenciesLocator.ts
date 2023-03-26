@@ -17,14 +17,14 @@ export const getCoffeePresenter = (view: CoffeeView) => {
 
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
-  const saveCoffeeItemIntoShoppingCartUseCase = new SaveItemShoppingCartUseCase(
+  const saveItemShoppingCartUseCase = new SaveItemShoppingCartUseCase(
     shoppingInMemory
   );
   return new CoffeePresenter(
     view,
     getAllCoffeeUseCase,
     getShoppingUseCase,
-    saveCoffeeItemIntoShoppingCartUseCase
+    saveItemShoppingCartUseCase
   );
 };
 

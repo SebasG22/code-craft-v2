@@ -22,7 +22,7 @@ export class CoffeePresenter {
     public view: CoffeeView,
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShopingCartUseCase: GetShoppingUseCase,
-    public saveCoffeeItemIntoShoppingCartUseCase: SaveItemShoppingCartUseCase
+    public saveItemShoppingCartUseCase: SaveItemShoppingCartUseCase
   ) {}
 
   async start() {
@@ -67,7 +67,7 @@ export class CoffeePresenter {
         coffees,
         data.data.value
       ) as CoffeeEntity;
-      this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
+      this.saveItemShoppingCartUseCase.execute(coffee);
     });
 
     this.start();

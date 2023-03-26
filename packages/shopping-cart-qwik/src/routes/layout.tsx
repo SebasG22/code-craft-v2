@@ -3,12 +3,9 @@ import {
   createContextId,
   Signal,
   Slot,
-  useContext,
   useContextProvider,
   useSignal,
-  useTask$,
 } from '@builder.io/qwik';
-import Header from '../components/header/header';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
 const controller = getCoffeeControllerQwik();
 

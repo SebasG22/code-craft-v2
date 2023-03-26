@@ -2,7 +2,7 @@ import {
   CoffeePresenter,
   CoffeeView,
   GetAllCoffeesUseCase,
-  SaveCoffeeItemIntoShoppingCartUseCase,
+  SaveItemShoppingCartUseCase,
   CoffeeInMemory,
   GetShoppingUseCase,
   ShoppingCartInMemory,
@@ -14,12 +14,13 @@ export const getCoffeePresenter = (view: CoffeeView) => {
 
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
-  const saveCoffeeItemIntoShoppingCartUseCase =
-    new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
+  const saveItemShoppingCartUseCase = new SaveItemShoppingCartUseCase(
+    shoppingInMemory
+  );
   return new CoffeePresenter(
     view,
     getAllCoffeeUseCase,
     getShoppingUseCase,
-    saveCoffeeItemIntoShoppingCartUseCase
+    saveItemShoppingCartUseCase
   );
 };

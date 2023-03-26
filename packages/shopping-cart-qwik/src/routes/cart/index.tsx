@@ -2,7 +2,6 @@ import {
   Signal,
   component$,
   useContext,
-  useStore,
   useStylesScoped$,
   $,
 } from '@builder.io/qwik';

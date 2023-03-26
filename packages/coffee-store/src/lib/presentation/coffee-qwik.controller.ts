@@ -9,7 +9,7 @@ export class CoffeeQwikController {
   constructor(
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShoopingCartUseCase: GetShoppingUseCase,
-    public saveCoffeeItemIntoShoppingCartUseCase: SaveItemShoppingCartUseCase,
+    public saveItemShoppingCartUseCase: SaveItemShoppingCartUseCase,
     public removeOneItemShoppingCartUseCase: RemoveOneItemFromShoppingCartUseCase,
     public removeItemShoppingCartUseCase: RemoveItemFromShoppingCartUseCase
   ) {}
@@ -28,7 +28,7 @@ export class CoffeeQwikController {
     const coffees = this.getAllCoffeeUseCase.execute();
     const coffee = this.getCoffeeEntity(coffees, id);
     if (coffee) {
-      this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
+      this.saveItemShoppingCartUseCase.execute(coffee);
     }
   }
 
