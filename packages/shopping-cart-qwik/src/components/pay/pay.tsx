@@ -14,7 +14,6 @@ import { currency } from '../../utils';
 const controller = getCoffeeControllerQwik();
 
 const addItemToCart = $((id: string, state: Signal<CartStore>) => {
-  console.warn('Clicked', id);
   controller.addItemToCart(id);
   const cartInfo = controller.getShoppingCart();
   state.value = cartInfo;

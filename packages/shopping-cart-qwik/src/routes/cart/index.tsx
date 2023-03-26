@@ -16,25 +16,20 @@ import Header from '../../components/header/header';
 const controller = getCoffeeControllerQwik();
 
 const addItemToCart = $((id: string, state: Signal<CartStore>) => {
-  console.warn('Clicked', id);
   controller.addItemToCart(id);
   const cartInfo = controller.getShoppingCart();
   state.value = cartInfo;
 });
 
 const removeOneItemFromCart = $((id: string, state: Signal<CartStore>) => {
-  console.warn('Clicked', id);
   controller.removeOneItemFromCart(id);
   const cartInfo = controller.getShoppingCart();
-  console.warn({ cartInfo });
   state.value = cartInfo;
 });
 
 const removeItemFromCart = $((id: string, state: Signal<CartStore>) => {
-  console.warn('Clicked', id);
   controller.remoteItemFromCart(id);
   const cartInfo = controller.getShoppingCart();
-  console.warn({ cartInfo });
   state.value = cartInfo;
 });
 
@@ -82,7 +77,6 @@ export default component$(() => {
                           type="button"
                           onClick$={() => {
                             removeOneItemFromCart(item.type.id, cartContext);
-                            console.warn('Remove one');
                           }}
                         >
                           -
