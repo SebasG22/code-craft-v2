@@ -1,22 +1,8 @@
 import { CoffeeEntity } from '../entities/coffee.entity';
 import { ShoppingCartEntity } from '../entities/shopping-cart.entity';
-import { ShoppingCartRepository } from '../repositories/shopping-cart.repository';
 import { RemoveOneItemFromShoppingCartUseCase } from './remove-one-item-shopping';
 import { GetShoppingUseCase } from './get-shopping';
-
-class ShoppingCartLocal implements ShoppingCartRepository {
-  constructor(public cart: ShoppingCartEntity) {
-    this.cart = cart;
-  }
-
-  save(cart: ShoppingCartEntity) {
-    this.cart = cart;
-  }
-
-  get(): ShoppingCartEntity {
-    return this.cart;
-  }
-}
+import { ShoppingCartInMemory } from '../../data/shopping-cart-in-memory';
 
 describe('Remove Item Shopping Use Case', () => {
   it('should remove the item if quantity is 0', () => {
@@ -33,7 +19,7 @@ describe('Remove Item Shopping Use Case', () => {
         },
       ],
     });
-    const repo = new ShoppingCartLocal(cart);
+    const repo = new ShoppingCartInMemory(cart);
     const getShoppingUseCase = new GetShoppingUseCase(repo);
     const removeOneItemUseCase = new RemoveOneItemFromShoppingCartUseCase(repo);
 
@@ -58,7 +44,7 @@ describe('Remove Item Shopping Use Case', () => {
         },
       ],
     });
-    const repo = new ShoppingCartLocal(cart);
+    const repo = new ShoppingCartInMemory(cart);
     const getShoppingUseCase = new GetShoppingUseCase(repo);
     const removeItemUseCase = new RemoveOneItemFromShoppingCartUseCase(repo);
 

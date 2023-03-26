@@ -2,7 +2,7 @@ import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { ShoppingCartEntity } from '../domain/entities/shopping-cart.entity';
 import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
 import { GetShoppingUseCase } from '../domain/use-cases/get-shopping';
-import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
+import { SaveItemShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
 export interface CoffeeView {
   showMainMenu(): Promise<string>;
@@ -22,7 +22,7 @@ export class CoffeePresenter {
     public view: CoffeeView,
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShopingCartUseCase: GetShoppingUseCase,
-    public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase
+    public saveItemShoppingCartUseCase: SaveItemShoppingCartUseCase
   ) {}
 
   async start() {
@@ -67,7 +67,7 @@ export class CoffeePresenter {
         coffees,
         data.data.value
       ) as CoffeeEntity;
-      this.saveCoffeeItemIntoShoppingCartUseCase.execute(coffee);
+      this.saveItemShoppingCartUseCase.execute(coffee);
     });
 
     this.start();

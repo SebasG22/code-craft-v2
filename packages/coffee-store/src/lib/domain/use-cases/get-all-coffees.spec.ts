@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { CoffeeEntity } from '../entities/coffee.entity';
 import { GetAllCoffeesUseCase } from './get-all-coffees';
+import { CoffeeInMemory } from '../../data/coffee-in-memory';
 
 const coffess = [
   CoffeeEntity.create({
@@ -19,11 +20,8 @@ const coffess = [
 
 describe('Get All Coffees Use Case', () => {
   it('Should return all coffess', () => {
-    const useCase = new GetAllCoffeesUseCase({
-      getAll: () => coffess,
-      getCoffeeByName: () => {},
-      save: () => {},
-    });
+    const repo = new CoffeeInMemory(coffess);
+    const useCase = new GetAllCoffeesUseCase(repo);
 
     const result = useCase.execute();
 

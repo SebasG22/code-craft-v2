@@ -56,4 +56,36 @@ describe('Shopping Cart Entity', () => {
     expect(cart.value.items[0]).toEqual(items[0]);
     expect(cart.value.items[1]).toEqual(items[1]);
   });
+
+  it('should serialize their own value', () => {
+    const items = [
+      {
+        type: capuccino,
+        quantity: 5,
+      },
+    ];
+
+    const cart = ShoppingCartEntity.create({
+      id: 'cart-1',
+      items,
+    });
+
+    expect(cart.serializeValue).toEqual({
+      id: 'cart-1',
+      items: [
+        {
+          type: {
+            ingredients: [],
+            name: 'Cappuccino',
+            price: 2,
+            id: 'demo-capuccino',
+          },
+          quantity: 5,
+          totalPerItem: 10,
+        },
+      ],
+      totalItems: 5,
+      totalPrice: 10,
+    });
+  });
 });
