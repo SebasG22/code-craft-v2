@@ -9,14 +9,13 @@ export interface PriceProps {
 export class Price {
   constructor(private data: PriceValue) {}
   static create(data: PriceProps) {
-    if(data.value > -1) {
+    if (data.value > -1) {
       return new Price(data);
-    } 
-    throw new Error("Price should be greather or equal to 0");
+    }
+    throw new Error('Price should be greather or equal to 0');
   }
 
-  get value(){
+  get value() {
     return this.data.value;
   }
-
 }

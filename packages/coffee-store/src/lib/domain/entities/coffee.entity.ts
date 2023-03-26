@@ -44,7 +44,9 @@ export class CoffeeEntity {
       id: this.data.id.value,
       name: this.data.name,
       price: this.data.price.value,
-      ingredients: this.data.ingredients.map((ingredient) => ingredient.serializeValue)
+      ingredients: this.data.ingredients.map(
+        (ingredient) => ingredient.serializeValue
+      ),
     };
   }
 }

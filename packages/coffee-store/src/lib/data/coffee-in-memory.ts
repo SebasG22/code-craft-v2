@@ -2,7 +2,6 @@ import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { CoffeeRepository } from '../domain/repositories/coffee.repository';
 
 export class CoffeeInMemory implements CoffeeRepository {
-
   constructor(public coffees: CoffeeEntity[]) {
     this.coffees = coffees;
   }
