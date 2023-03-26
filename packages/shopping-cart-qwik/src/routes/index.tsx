@@ -35,60 +35,60 @@ export default component$(() => {
     <>
       <Header totalItems={cartContext.value.totalItems} />
       <main>
-      <section class="container">
-        <div>
-          <ul>
-            {listContext.value.list.map((item) => (
-              <li>
-                <h4
-                  onDblClick$={() => {
-                    console.warn('DB clicked');
-                  }}
-                >
-                  {/* {item.showTranslate ? 'true' : 'false'} */}
-                  {/* {item.showTranslate ? item.translate : item.name} */}
-                  {item.name}
-                  <br />
-                  <small>{currency(item.price)}</small>
-                </h4>
-                <div
-                  preventdefault:contextmenu
-                  onClick$={() => {
-                    addItemToCart(item.id, cartContext);
-                  }}
-                  onContextMenu$={() => {
-                    console.warn('Context Menu');
-                    selectedCoffee.value = item;
-                    modalRef.value?.showModal();
-                  }}
-                >
-                  <Cup item={item} />
-                </div>
-              </li>
-            ))}
-          </ul>
-          <Pay isDisablePreview={false} />
-        </div>
+        <section class="container">
+          <div>
+            <ul>
+              {listContext.value.list.map((item) => (
+                <li>
+                  <h4
+                    onDblClick$={() => {
+                      console.warn('DB clicked');
+                    }}
+                  >
+                    {/* {item.showTranslate ? 'true' : 'false'} */}
+                    {/* {item.showTranslate ? item.translate : item.name} */}
+                    {item.name}
+                    <br />
+                    <small>{currency(item.price)}</small>
+                  </h4>
+                  <div
+                    preventdefault:contextmenu
+                    onClick$={() => {
+                      addItemToCart(item.id, cartContext);
+                    }}
+                    onContextMenu$={() => {
+                      console.warn('Context Menu');
+                      selectedCoffee.value = item;
+                      modalRef.value?.showModal();
+                    }}
+                  >
+                    <Cup item={item} />
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <Pay isDisablePreview={false} />
+          </div>
 
-        <dialog ref={modalRef} data-cy="add-to-cart-modal">
-          <p>
-            Add <strong>{selectedCoffee.value?.name}</strong> to the cart?
-          </p>
-          <form method="dialog">
-            <button
-              onClick$={() => {
-                console.warn('Clicked Dialog');
-                if (selectedCoffee.value?.id) {
-                  addItemToCart(selectedCoffee.value.id, cartContext);
-                }
-              }}
-            >
-              Yes
-            </button>
-            <button>No</button>
-          </form>
-        </dialog>
-      </section>
+          <dialog ref={modalRef} data-cy="add-to-cart-modal">
+            <p>
+              Add <strong>{selectedCoffee.value?.name}</strong> to the cart?
+            </p>
+            <form method="dialog">
+              <button
+                onClick$={() => {
+                  console.warn('Clicked Dialog');
+                  if (selectedCoffee.value?.id) {
+                    addItemToCart(selectedCoffee.value.id, cartContext);
+                  }
+                }}
+              >
+                Yes
+              </button>
+              <button>No</button>
+            </form>
+          </dialog>
+        </section>
       </main>
     </>
   );

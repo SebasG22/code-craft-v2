@@ -43,5 +43,4 @@ describe('Remove Item Shopping Use Case', () => {
     expect(result.totalItems).toEqual(0);
     expect(result.value.items.length).toEqual(0);
   });
-
 });

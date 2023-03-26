@@ -34,8 +34,10 @@ export class ShoppingCartEntity {
     );
   }
 
-  getTotalPricePerItem(id: Id){
-    const itemIndex = this.data.items.findIndex(item => item.type.value.id.value === id.value);
+  getTotalPricePerItem(id: Id) {
+    const itemIndex = this.data.items.findIndex(
+      (item) => item.type.value.id.value === id.value
+    );
     const item = this.data.items[itemIndex];
 
     return item.quantity * item.type.value.price.value;

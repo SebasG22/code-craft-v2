@@ -36,7 +36,7 @@ export class CoffeeQwikController {
     this.removeOneItemShoppingCartUseCase.execute(id);
   }
 
-  remoteItemFromCart(id: string){
+  remoteItemFromCart(id: string) {
     this.removeItemShoppingCartUseCase.execute(id);
   }
 
