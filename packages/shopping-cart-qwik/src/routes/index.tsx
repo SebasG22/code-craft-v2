@@ -22,7 +22,6 @@ export default component$(() => {
   const listContext = useContext(ItemListContext);
 
   const addItemToCart = $((id: string, state: Signal<CartStore>) => {
-    console.warn('Clicked', id);
     controller.addItemToCart(id);
     const cartInfo = controller.getShoppingCart();
     state.value = cartInfo;
@@ -57,7 +56,6 @@ export default component$(() => {
                       addItemToCart(item.id, cartContext);
                     }}
                     onContextMenu$={() => {
-                      console.warn('Context Menu');
                       selectedCoffee.value = item;
                       modalRef.value?.showModal();
                     }}
@@ -77,7 +75,6 @@ export default component$(() => {
             <form method="dialog">
               <button
                 onClick$={() => {
-                  console.warn('Clicked Dialog');
                   if (selectedCoffee.value?.id) {
                     addItemToCart(selectedCoffee.value.id, cartContext);
                   }
