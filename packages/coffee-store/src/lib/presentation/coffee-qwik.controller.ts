@@ -1,7 +1,8 @@
 import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
 import { GetShoppingUseCase } from '../domain/use-cases/get-shopping';
-import { RemoveItemItemFromShoppingCartUseCase } from '../domain/use-cases/remove-item-shopping';
+import { RemoveItemFromShoppingCartUseCase } from '../domain/use-cases/remove-item-shopping';
+import { RemoveOneItemFromShoppingCartUseCase } from '../domain/use-cases/remove-one-item-shopping';
 import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
 export class CoffeeQwikController {
@@ -9,7 +10,8 @@ export class CoffeeQwikController {
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShoopingCartUseCase: GetShoppingUseCase,
     public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase,
-    public removeItemShoppingCartUseCase: RemoveItemItemFromShoppingCartUseCase
+    public removeOneItemShoppingCartUseCase: RemoveOneItemFromShoppingCartUseCase,
+    public removeItemShoppingCartUseCase: RemoveItemFromShoppingCartUseCase
   ) {}
 
   private getCoffeeEntity(coffees: CoffeeEntity[], id: string) {
@@ -30,7 +32,11 @@ export class CoffeeQwikController {
     }
   }
 
-  removeItemFromCart(id: string) {
+  removeOneItemFromCart(id: string) {
+    this.removeOneItemShoppingCartUseCase.execute(id);
+  }
+
+  remoteItemFromCart(id: string) {
     this.removeItemShoppingCartUseCase.execute(id);
   }
 

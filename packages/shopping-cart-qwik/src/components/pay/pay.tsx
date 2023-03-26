@@ -20,11 +20,9 @@ const addItemToCart = $((id: string, state: Signal<CartStore>) => {
   state.value = cartInfo;
 });
 
-const removeItemFromCart = $((id: string, state: Signal<CartStore>) => {
-  console.warn('Clicked', id);
-  controller.removeItemFromCart(id);
+const removeOneItemFromCart = $((id: string, state: Signal<CartStore>) => {
+  controller.removeOneItemFromCart(id);
   const cartInfo = controller.getShoppingCart();
-  console.warn({ cartInfo });
   state.value = cartInfo;
 });
 export interface PayProps {
@@ -53,7 +51,7 @@ export default component$((props: PayProps) => {
       {cartContext.value.totalItems > 0 && (
         <ul class="cart-preview" ref={dialogRef}>
           {cartContext.value.items.map((item) => (
-            <li key={item.type.name} class="list-item">
+            <li key={item.type.id} class="list-item">
               <div>
                 <span>{item.type.name}</span>
                 <span class="unit-desc"> x {item.quantity}</span>
@@ -72,7 +70,7 @@ export default component$((props: PayProps) => {
                   aria-label={`Remove one ${item.type.name}`}
                   type="button"
                   onClick$={() => {
-                    removeItemFromCart(item.type.id, cartContext);
+                    removeOneItemFromCart(item.type.id, cartContext);
                   }}
                 >
                   -
