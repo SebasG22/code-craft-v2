@@ -1,7 +1,7 @@
 import { ShoppingCartEntity } from '../entities/shopping-cart.entity';
 import { ShoppingCartRepository } from '../repositories/shopping-cart.repository';
 
-export class RemoveItemFromShoppingCartUseCase {
+export class RemoveOneItemFromShoppingCartUseCase {
   constructor(private shoppingCartRepository: ShoppingCartRepository) {}
 
   execute(id: string) {
@@ -12,13 +12,17 @@ export class RemoveItemFromShoppingCartUseCase {
     );
 
     if (itemOnCartIndex > -1) {
-      items.splice(itemOnCartIndex, 1);
+      if (items[itemOnCartIndex].quantity > 1) {
+        items[itemOnCartIndex].quantity -= 1;
+      } else {
+        items.splice(itemOnCartIndex, 1);
 
-      const cart = ShoppingCartEntity.create({
-        items: items,
-      });
+        const cart = ShoppingCartEntity.create({
+          items: items,
+        });
 
-      this.shoppingCartRepository.save(cart);
+        this.shoppingCartRepository.save(cart);
+      }
     } else {
       throw new Error('Item cannot be removed because does not exist');
     }

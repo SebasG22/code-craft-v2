@@ -34,6 +34,13 @@ export class ShoppingCartEntity {
     );
   }
 
+  getTotalPricePerItem(id: Id){
+    const itemIndex = this.data.items.findIndex(item => item.type.value.id.value === id.value);
+    const item = this.data.items[itemIndex];
+
+    return item.quantity * item.type.value.price.value;
+  }
+
   get totalItems() {
     return this.data.items.reduce(
       (accumulator, currentValue) => accumulator + currentValue.quantity,
@@ -47,6 +54,7 @@ export class ShoppingCartEntity {
       items: this.data.items.map((item) => ({
         type: item.type.serializeValue,
         quantity: item.quantity,
+        totalPerItem: this.getTotalPricePerItem(item.type.value.id),
       })),
       totalPrice: this.totalPrice,
       totalItems: this.totalItems,

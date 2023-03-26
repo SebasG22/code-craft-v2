@@ -6,6 +6,7 @@ import {
   useContext,
   useContextProvider,
   useSignal,
+  useTask$,
 } from '@builder.io/qwik';
 import Header from '../components/header/header';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
@@ -16,6 +17,7 @@ export interface CartStore {
   items: {
     type: Item;
     quantity: number;
+    totalPerItem: number;
   }[];
   totalPrice: number;
   totalItems: number;
@@ -50,18 +52,7 @@ export default component$(() => {
 
   return (
     <div class="page">
-      <Inner />
-      <main>
-        <section class="container">
-          <Slot />
-        </section>
-      </main>
+      <Slot />
     </div>
   );
-});
-
-export const Inner = component$(() => {
-  const cart = useContext(CartContext);
-
-  return <Header totalItems={cart.value.totalItems} />;
 });
