@@ -1,6 +1,6 @@
 import {
   GetAllCoffeesUseCase,
-  SaveCoffeeItemIntoShoppingCartUseCase,
+  SaveItemShoppingCartUseCase,
   CoffeeInMemory,
   GetShoppingUseCase,
   ShoppingCartInMemory,
@@ -18,7 +18,7 @@ export const getCoffeePresenter = (view: CoffeeView) => {
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
   const saveCoffeeItemIntoShoppingCartUseCase =
-    new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
+    new SaveItemShoppingCartUseCase(shoppingInMemory);
   return new CoffeePresenter(
     view,
     getAllCoffeeUseCase,
@@ -35,7 +35,7 @@ export const getCoffeeControllerQwik = () => {
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
   const saveCoffeeItemIntoShoppingCartUseCase =
-    new SaveCoffeeItemIntoShoppingCartUseCase(shoppingInMemory);
+    new SaveItemShoppingCartUseCase(shoppingInMemory);
 
   const removeOneItemShopping = new RemoveOneItemFromShoppingCartUseCase(
     shoppingInMemory

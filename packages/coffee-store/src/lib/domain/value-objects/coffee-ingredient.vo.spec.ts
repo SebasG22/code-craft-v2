@@ -8,7 +8,7 @@ describe('Coffee Ingredient', ()=>{
         });
 
         expect(ingredient.value.name).toEqual('milk');
-        expect(ingredient.value.quantity.value.quantity).toEqual(1);
+        expect(ingredient.value.quantity.value).toEqual(1);
     });
 
     it('should throw and error when value is invalid', ()=>{

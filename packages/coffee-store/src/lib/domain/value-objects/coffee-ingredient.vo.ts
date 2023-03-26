@@ -28,4 +28,11 @@ export class CoffeeIngredient {
   get value() {
     return this.data;
   }
+
+  get serializeValue(){
+    return {
+      name: this.data.name,
+      quantity: this.data.quantity.value
+    }
+  }
 }

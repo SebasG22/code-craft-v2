@@ -3,13 +3,13 @@ import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
 import { GetShoppingUseCase } from '../domain/use-cases/get-shopping';
 import { RemoveItemFromShoppingCartUseCase } from '../domain/use-cases/remove-item-shopping';
 import { RemoveOneItemFromShoppingCartUseCase } from '../domain/use-cases/remove-one-item-shopping';
-import { SaveCoffeeItemIntoShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
+import { SaveItemShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
 export class CoffeeQwikController {
   constructor(
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShoopingCartUseCase: GetShoppingUseCase,
-    public saveCoffeeItemIntoShoppingCartUseCase: SaveCoffeeItemIntoShoppingCartUseCase,
+    public saveCoffeeItemIntoShoppingCartUseCase: SaveItemShoppingCartUseCase,
     public removeOneItemShoppingCartUseCase: RemoveOneItemFromShoppingCartUseCase,
     public removeItemShoppingCartUseCase: RemoveItemFromShoppingCartUseCase
   ) {}

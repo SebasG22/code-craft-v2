@@ -46,4 +46,25 @@ describe('Coffee Entity', () => {
     expect(capucino.value.price.value).toEqual(2);
     expect(capucino.value.ingredients).toEqual(coffeIngredientes);
   });
+
+  it('should serialize their own value', () => {
+    const ingredients = [
+      { name: 'milk foam', quantity: 20 },
+      { name: 'espresso', quantity: 30 },
+    ];
+
+    const capucino = CoffeeEntity.create({
+      id: 'capuccino-1',
+      ingredients,
+      name: 'Capuccino',
+      price: 2,
+    });
+
+    expect(capucino.serializeValue).toEqual({
+      id: 'capuccino-1',
+      ingredients,
+      name: 'Capuccino',
+      price: 2,
+    });
+  });
 });

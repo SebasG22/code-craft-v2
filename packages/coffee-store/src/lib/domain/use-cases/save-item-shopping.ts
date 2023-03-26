@@ -2,7 +2,7 @@ import { CoffeeEntity } from '../entities/coffee.entity';
 import { ShoppingCartEntity } from '../entities/shopping-cart.entity';
 import { ShoppingCartRepository } from '../repositories/shopping-cart.repository';
 
-export class SaveCoffeeItemIntoShoppingCartUseCase {
+export class SaveItemShoppingCartUseCase {
   constructor(private shoppingCartRepository: ShoppingCartRepository) {}
 
   execute(data: CoffeeEntity){

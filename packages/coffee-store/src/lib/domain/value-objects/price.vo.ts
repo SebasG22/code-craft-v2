@@ -18,4 +18,5 @@ export class Price {
   get value(){
     return this.data.value;
   }
+
 }

@@ -18,6 +18,7 @@ export class Quantity {
   }
 
   get value() {
-    return this.data;
+    return this.data.quantity;
   }
+
 }

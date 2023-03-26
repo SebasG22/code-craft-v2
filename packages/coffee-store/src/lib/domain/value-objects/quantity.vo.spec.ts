@@ -6,7 +6,7 @@ describe('Quantity VO', ()=>{
             quantity: 20
         });
 
-        expect(quantity.value.quantity).toEqual(20);
+        expect(quantity.value).toEqual(20);
     });
 
     it('should throw an error when value is invalid', ()=>{
@@ -15,4 +15,6 @@ describe('Quantity VO', ()=>{
             quantity: -1
         })).toThrowError("Quantity should be greather or equal to 0")
     });
+
+    
 });
