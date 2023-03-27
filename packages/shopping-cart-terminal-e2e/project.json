@@ -4,6 +4,7 @@
   "implicitDependencies": ["shopping-cart-terminal"],
   "targets": {
     "e2e": {
+      "dependsOn": ["^build"],
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
       "options": {

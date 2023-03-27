@@ -5,16 +5,11 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "nx:run-commands",
       "options": {
-        "cypressConfig": "packages/shopping-cart-qwik-e2e/cypress.config.ts",
-        "devServerTarget": "shopping-cart-qwik:serve:development",
-        "testingType": "e2e"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "shopping-cart-qwik:serve:production"
-        }
+        "commands": [
+          "playwright install && playwright test -c packages/shopping-cart-qwik-e2e/playwright.config.ts"
+        ]
       }
     },
     "lint": {
