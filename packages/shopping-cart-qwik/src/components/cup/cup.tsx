@@ -11,7 +11,11 @@ export default component$((props: CupProps) => {
 
   return (
     <div class="cup">
-      <div class="cup-body" aria-label={props.item.name}>
+      <div
+        class="cup-body"
+        aria-label={props.item.name}
+        data-test={props.item.name.replace(' ', '_')}
+      >
         {props.item.ingredients.map((ingredient) => (
           <div
             class={'ingredient ' + ingredient.name}

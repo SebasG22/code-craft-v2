@@ -6,7 +6,6 @@ describe('CLI tests', () => {
     const cliPath = join(process.cwd(), 'dist/packages/shopping-cart-terminal');
 
     const output = execSync(`node ${cliPath}`).toString();
-
-    expect(output).toMatch(/Hello World/);
+    expect(output).toMatch(/Welcome to Sebas Valdez coffee/);
   });
 });
