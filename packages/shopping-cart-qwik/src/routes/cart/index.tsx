@@ -9,7 +9,6 @@ import Pay from '../../components/pay/pay';
 import cartStyles from './cart.css?inline';
 import { getCoffeeControllerQwik } from '../../presentation/dependenciesLocator';
 import { CartContext, CartStore } from '../layout';
-import { currency } from '../../utils';
 import Header from '../../components/header/header';
 
 const controller = getCoffeeControllerQwik();
@@ -59,7 +58,7 @@ export default component$(() => {
                     <div> {item.type.name} </div>
                     <div>
                       <span class="unit-desc">
-                        {currency(item.type.price)} x {item.quantity}
+                        {item.type.price} x {item.quantity}
                       </span>
                       <div class="unit-controller">
                         <button
@@ -82,7 +81,7 @@ export default component$(() => {
                         </button>
                       </div>
                     </div>
-                    <div> {currency(item.totalPerItem)} </div>
+                    <div> {item.totalPerItem} </div>
                     <div>
                       <button
                         aria-label={`Remove all` + item.type.name}

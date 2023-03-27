@@ -14,15 +14,15 @@ export interface CartStore {
   items: {
     type: Item;
     quantity: number;
-    totalPerItem: number;
+    totalPerItem: string;
   }[];
-  totalPrice: number;
+  totalPrice: string;
   totalItems: number;
 }
 export interface Item {
   id: string;
   name: string;
-  price: number;
+  price: string;
   ingredients: {
     name: string;
     quantity: number;

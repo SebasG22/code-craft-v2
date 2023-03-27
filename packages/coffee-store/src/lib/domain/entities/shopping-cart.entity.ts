@@ -1,4 +1,5 @@
 import { Id } from '../value-objects/id.vo';
+import { Price } from '../value-objects/price.vo';
 import { CoffeeEntity } from './coffee.entity';
 
 export interface ShoppingCartEntityValue {
@@ -26,11 +27,13 @@ export class ShoppingCartEntity {
   }
 
   get totalPrice() {
-    return this.data.items.reduce(
-      (accumulator, currentValue) =>
-        accumulator +
-        currentValue.type.value.price.value * currentValue.quantity,
-      0
+    return Price.formatValue(
+      this.data.items.reduce(
+        (accumulator, currentValue) =>
+          accumulator +
+          currentValue.type.value.price.value * currentValue.quantity,
+        0
+      )
     );
   }
 
@@ -40,7 +43,7 @@ export class ShoppingCartEntity {
     );
     const item = this.data.items[itemIndex];
 
-    return item.quantity * item.type.value.price.value;
+    return Price.formatValue(item.quantity * item.type.value.price.value);
   }
 
   get totalItems() {
