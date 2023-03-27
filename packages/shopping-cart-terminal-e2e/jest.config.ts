@@ -13,5 +13,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../..//coverage/shopping-cart-terminal-e2e',
+  coverageDirectory: '../../coverage/shopping-cart-terminal-e2e',
 };
