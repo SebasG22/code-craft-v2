@@ -1,9 +1,13 @@
-import { ShoppingCartRepository } from "../repositories/shopping-cart.repository";
+import { slowProcessing } from '../../utils';
+import { ShoppingCartRepository } from '../repositories/shopping-cart.repository';
 
 export class GetShoppingUseCase {
-    constructor(private shoppingCartRepository: ShoppingCartRepository){}
+  constructor(private shoppingCartRepository: ShoppingCartRepository) {}
 
-    execute(){
-       return this.shoppingCartRepository.get();
-    }
+  execute() {
+    const cart = this.shoppingCartRepository.get();
+    slowProcessing(cart.totalItems);
+
+    return cart;
+  }
 }

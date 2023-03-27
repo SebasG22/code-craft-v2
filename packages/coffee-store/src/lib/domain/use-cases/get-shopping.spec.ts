@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { ShoppingCartInMemory } from '../../data/shopping-cart-in-memory';
+import * as utils from '../../utils';
 import { CoffeeEntity } from '../entities/coffee.entity';
 import { ShoppingCartEntity } from '../entities/shopping-cart.entity';
 import { GetShoppingUseCase } from './get-shopping';
@@ -22,7 +23,13 @@ const cart = ShoppingCartEntity.create({
   ],
 });
 
+const slowProcessingSpy = vi.spyOn(utils, 'slowProcessing');
+
 describe('Get Shopping Use Case', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('Should return the shopping cart', () => {
     const repo = new ShoppingCartInMemory(cart);
     const useCase = new GetShoppingUseCase(repo);
@@ -30,5 +37,6 @@ describe('Get Shopping Use Case', () => {
     const result = useCase.execute();
 
     expect(result).toEqual(cart);
+    expect(slowProcessingSpy).toHaveBeenCalledTimes(1);
   });
 });
