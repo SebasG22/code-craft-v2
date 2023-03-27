@@ -43,7 +43,7 @@ export class CoffeeEntity {
     return {
       id: this.data.id.value,
       name: this.data.name,
-      price: this.data.price.value,
+      price: Price.formatValue(this.data.price.value),
       ingredients: this.data.ingredients.map(
         (ingredient) => ingredient.serializeValue
       ),

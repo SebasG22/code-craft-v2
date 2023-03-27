@@ -18,4 +18,13 @@ export class Price {
   get value() {
     return this.data.value;
   }
+
+  static formatValue(value: number) {
+    const nf = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 2,
+    });
+    return nf.format(value);
+  }
 }

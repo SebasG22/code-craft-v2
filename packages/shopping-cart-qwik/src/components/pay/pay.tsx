@@ -9,7 +9,6 @@ import {
 import payStyles from './pay.css?inline';
 import { getCoffeeControllerQwik } from '../../presentation/dependenciesLocator';
 import { CartContext, CartStore } from '../../routes/layout';
-import { currency } from '../../utils';
 
 const controller = getCoffeeControllerQwik();
 
@@ -92,7 +91,7 @@ export default component$((props: PayProps) => {
           console.warn('Pay');
         }}
       >
-        Total: {currency(cartContext.value.totalPrice)}
+        Total: {cartContext.value.totalPrice}
       </button>
     </div>
   );

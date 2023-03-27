@@ -10,7 +10,6 @@ import Cup from '../components/cup/cup';
 import Pay from '../components/pay/pay';
 import indexStyles from './index.css?inline';
 import { getCoffeeControllerQwik } from '../presentation/dependenciesLocator';
-import { currency } from '../utils';
 import { CartContext, CartStore, Item, ItemListContext } from './layout';
 import Header from '../components/header/header';
 
@@ -48,7 +47,7 @@ export default component$(() => {
                     {/* {item.showTranslate ? item.translate : item.name} */}
                     {item.name}
                     <br />
-                    <small>{currency(item.price)}</small>
+                    <small>{item.price}</small>
                   </h4>
                   <div
                     preventdefault:contextmenu

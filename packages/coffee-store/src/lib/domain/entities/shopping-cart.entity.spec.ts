@@ -77,15 +77,15 @@ describe('Shopping Cart Entity', () => {
           type: {
             ingredients: [],
             name: 'Cappuccino',
-            price: 2,
+            price: '$2.00',
             id: 'demo-capuccino',
           },
           quantity: 5,
-          totalPerItem: 10,
+          totalPerItem: '$10.00',
         },
       ],
       totalItems: 5,
-      totalPrice: 10,
+      totalPrice: '$10.00',
     });
   });
 });

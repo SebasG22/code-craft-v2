@@ -64,7 +64,7 @@ describe('Coffee Entity', () => {
       id: 'capuccino-1',
       ingredients,
       name: 'Capuccino',
-      price: 2,
+      price: '$2.00',
     });
   });
 });
