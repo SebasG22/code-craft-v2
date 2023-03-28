@@ -41,9 +41,13 @@ export class ShoppingCartEntity {
     const itemIndex = this.data.items.findIndex(
       (item) => item.type.value.id.value === id.value
     );
-    const item = this.data.items[itemIndex];
 
-    return Price.formatValue(item.quantity * item.type.value.price.value);
+    if (itemIndex > -1) {
+      const item = this.data.items[itemIndex];
+
+      return Price.formatValue(item.quantity * item.type.value.price.value);
+    }
+    throw new Error('Item does not exist');
   }
 
   get totalItems() {
