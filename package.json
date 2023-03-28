@@ -18,6 +18,7 @@
     "@clack/prompts": "^0.6.1",
     "@crxjs/vite-plugin": "^2.0.0-beta.15",
     "@nrwl/js": "15.8.6",
+    "@stryker-mutator/core": "^6.4.2",
     "@vitejs/plugin-vue": "^4.1.0",
     "axios": "^1.0.0",
     "pocketbase": "^0.12.1",

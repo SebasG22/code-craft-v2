@@ -23,7 +23,9 @@ const cart = ShoppingCartEntity.create({
   ],
 });
 
-const slowProcessingSpy = vi.spyOn(utils, 'slowProcessing');
+const slowProcessingSpy = vi
+  .spyOn(utils, 'slowProcessing')
+  .mockImplementation(() => {});
 
 describe('Get Shopping Use Case', () => {
   afterEach(() => {

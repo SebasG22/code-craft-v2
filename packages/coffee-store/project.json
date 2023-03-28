@@ -19,6 +19,12 @@
         "reportsDirectory": "../../coverage/packages/coffee-store"
       }
     },
+    "mutation": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "stryker run packages/coffee-store/stryker.conf.json"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

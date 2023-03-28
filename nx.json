@@ -9,7 +9,8 @@
           "build.ssr",
           "lint",
           "test",
-          "e2e"
+          "e2e",
+          "mutation"
         ],
         "accessToken": "MDgzNWFlNDMtOWIzMi00NmUxLWIzMmQtN2QwZWIyMGIyYzMwfHJlYWQtd3JpdGU="
       }
