@@ -1,3 +1,17 @@
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { CoffeeEntitySerialize } from '@code-craft/coffee-store';
+
+export default defineComponent({
+  props: {
+    item: {
+      type: Object as PropType<CoffeeEntitySerialize>,
+      required: true,
+    },
+  },
+});
+</script>
+
 <template>
   <div class="cup">
     <div
@@ -17,31 +31,6 @@
     <div class="cup-handler"></div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, defineProps, PropType, watch } from 'vue';
-import { CoffeeEntityProps } from '@code-craft/coffee-store';
-
-export default defineComponent({
-  props: {
-    item: {
-      type: Object as PropType<CoffeeEntityProps>,
-      required: true,
-    },
-  },
-  setup(props) {
-    console.warn({ props });
-    // You can access the props here
-    // Watch for changes to the count property
-    watch(
-      () => props.item,
-      (newValue, oldValue) => {
-        console.log(`props.item changed from ${oldValue} to ${newValue}`);
-      }
-    );
-  },
-});
-</script>
 
 <style>
 .cup {
@@ -114,5 +103,4 @@ export default defineComponent({
 .water {
   background-color: rgb(127, 195, 179);
 }
-
 </style>

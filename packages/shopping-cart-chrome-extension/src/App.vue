@@ -1,61 +1,40 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
-import Cup from './components/Cup.vue';
-import { CoffeeEntity } from '@code-craft/coffee-store';
-import { ref, reactive } from 'vue';
-import { getCoffeeControllerVue } from './presentation/dependenciesLocator';
+import List from './pages/List.vue';
+import Cart from './pages/Cart.vue';
+import { shallowRef } from 'vue';
 import { useItems } from './composition/useItems';
 
-const modalRef = ref();
-const selectedCoffee = ref();
+let current = shallowRef(List);
 
-const { cartList, itemList, addItemToShopping } = useItems();
+const { cartList } = useItems();
 
-const execute = (item) => {
-  selectedCoffee.value = item;
-  modalRef.value?.showModal();
+const handleMenuSelected = (menuId: string) => {
+  switch (menuId) {
+    case '/':
+      current.value = shallowRef(List).value;
+      break;
+    case '/cart':
+      current.value = shallowRef(Cart).value;
+    default:
+      break;
+  }
 };
 </script>
 
 <template>
   <div className="page">
-    <Header :totalItems="cartList.cart.totalItems" />
-    <main>
-      <section class="container">
-        <div>
-          <ul>
-            <li v-for="item in itemList.list" :key="item.id">
-              <h4>
-                {{ item.name }}
-                <br />
-                <small>{{ item.price }}</small>
-              </h4>
-              <div
-                @contextmenu.prevent="execute(item)"
-                @click="addItemToShopping(item.id)"
-              >
-                <Cup :item="item" />
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <dialog ref="modalRef">
-          <p>
-            Add <strong>{{ selectedCoffee?.name }}</strong> to the cart?
-          </p>
-          <form method="dialog">
-            <button @click="addItemToShopping(selectedCoffee?.id)">Yes</button>
-            <button>No</button>
-          </form>
-        </dialog>
-      </section>
-    </main>
+    <Header
+      :totalItems="cartList.cart.totalItems"
+      @menu-selected="handleMenuSelected"
+    />
+    <KeepAlive>
+      <component :is="current"></component>
+    </KeepAlive>
   </div>
 </template>
 
-<style>
+<style scoped>
 ul {
   list-style: none;
   padding: 0;
@@ -74,13 +53,13 @@ button:hover {
   border-color: goldenrod;
   color: goldenrod;
 }
-:global(.pay) {
+:deep(.pay) {
   display: block;
   right: 10px;
   bottom: 10px;
   align-self: flex-end;
 }
-:global(.pay-container) {
+:deep(.pay-container) {
   position: fixed;
   bottom: 0px;
   right: 10px;

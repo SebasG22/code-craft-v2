@@ -1,22 +1,18 @@
 import { reactive } from 'vue';
 import { getCoffeeControllerVue } from '../presentation/dependenciesLocator';
+
 const controller = getCoffeeControllerVue();
-controller.getShoppingCart();
 
 const itemList = reactive({
   list: controller.getAllCoffees(),
 });
 
-const cartList = reactive({cart: controller.getShoppingCart()},
-);
-
-
+const cartList = reactive({ cart: controller.getShoppingCart() });
 
 const addItemToShopping = (id: string) => {
   controller.addItemToCart(id);
   const cartInfo = controller.getShoppingCart();
   cartList.cart = cartInfo;
-  console.warn(cartList);
 };
 
 const removeOneItemFromCart = (id: string) => {
@@ -37,6 +33,6 @@ export const useItems = () => {
     cartList,
     addItemToShopping,
     removeOneItemFromCart,
-    removeItemFromCart
+    removeItemFromCart,
   };
 };

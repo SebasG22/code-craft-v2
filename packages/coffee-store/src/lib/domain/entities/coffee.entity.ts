@@ -19,6 +19,13 @@ export interface CoffeeEntityProps {
   ingredients: CoffeeIngredientProps[];
 }
 
+export interface CoffeeEntitySerialize {
+  id?: string;
+  name: string;
+  price: string;
+  ingredients: CoffeeIngredientProps[];
+}
+
 export class CoffeeEntity {
   constructor(private data: CoffeeEntityValue) {}
 

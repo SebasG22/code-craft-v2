@@ -1,0 +1,196 @@
+<script setup>
+import { useItems } from '../composition/useItems';
+
+const {
+  cartList,
+  addItemToShopping,
+  removeOneItemFromCart,
+  removeItemFromCart,
+} = useItems();
+</script>
+<template>
+  <main>
+    <section class="container">
+      <div class="list">
+        <p v-if="cartList.cart.totalItems === 0">No coffee, go add some.</p>
+        <div v-else>
+          <Pay :isDisablePreview="true" />
+          <ul class="cart-container">
+            <li class="list-header">
+              <div>Item</div>
+              <div>Unit</div>
+              <div>Total</div>
+              <div></div>
+            </li>
+          </ul>
+          <li
+            v-for="item in cartList.cart.items"
+            key="{item.type.id}"
+            class="list-item"
+          >
+            <div>{{ item.type.name }}</div>
+            <div>
+              <span class="unit-desc">
+                {{ item.type.price }} x {{ item.quantity }}
+              </span>
+              <div class="unit-controller">
+                <button
+                  aria-label="Add one ${item.type.name}"
+                  type="button"
+                  @click="addItemToShopping(item.type.id)"
+                >
+                  +
+                </button>
+                <button
+                  aria-label="Remove one ${item.type.name}"
+                  type="button"
+                  @click="removeOneItemFromCart(item.type.id)"
+                >
+                  -
+                </button>
+              </div>
+            </div>
+            <div>{{ item.totalPerItem }}</div>
+            <div>
+              <button
+                aria-label="Remove all + item.type.name"
+                class="delete"
+                type="button"
+                @click="removeItemFromCart(item.type.id)"
+              >
+                x
+              </button>
+            </div>
+          </li>
+        </div>
+      </div>
+    </section>
+  </main>
+</template>
+
+<style scoped>
+p {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.list {
+  margin: 0 auto;
+  max-width: 680px;
+  padding: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  font-weight: 300;
+  font-size: x-large;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-areas: 'a a d' 'b b c';
+}
+
+li {
+  border-bottom: 4px dashed lightgray;
+}
+
+/* title */
+li div:first-child {
+  grid-area: a;
+}
+
+/* unit price */
+li div:nth-child(2) {
+  grid-area: b;
+  display: flex;
+}
+
+/* total */
+li div:nth-child(3) {
+  grid-area: c;
+  justify-self: end;
+}
+
+/* delete button */
+li div:last-child {
+  grid-area: d;
+  justify-self: right;
+  display: flex;
+  align-items: center;
+}
+
+.list-header {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  li {
+    grid-template-columns: repeat(3, auto);
+    /* autoprefixer: off */
+    grid-template-areas: 'a a d' 'b b c';
+  }
+}
+
+@media (min-width: 800px) {
+  li {
+    grid-template-columns: 260px 200px 140px 50px;
+    /* autoprefixer: off */
+    grid-template-areas: 'a b c d';
+  }
+
+  .list-header {
+    display: grid;
+    font-weight: bold;
+    font-size: initial;
+  }
+}
+
+/* delete button */
+
+.delete {
+  height: 24px;
+  width: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  font-weight: bold;
+  background: rgba(10, 10, 10, 0.15);
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.delete:hover {
+  color: red;
+  background: lightpink;
+}
+
+/* unit controller */
+
+.unit-controller {
+  margin-left: 10px;
+}
+
+.unit-controller button {
+  min-height: 20px;
+  font-size: 14px;
+  border: 2px solid;
+  padding: 0 6px;
+  margin: 2px -1px;
+  background: antiquewhite;
+}
+
+.unit-desc {
+  min-width: 120px;
+}
+
+:deep(.pay-container) {
+  padding: 0;
+}
+
+:deep(.pay) {
+  align-self: flex-start;
+}
+</style>

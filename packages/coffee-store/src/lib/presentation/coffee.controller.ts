@@ -27,7 +27,6 @@ export class CoffeeController {
   addItemToCart(id: string) {
     const coffees = this.getAllCoffeeUseCase.execute();
     const coffee = this.getCoffeeEntity(coffees, id);
-    console.warn({coffee });
     if (coffee) {
       this.saveItemShoppingCartUseCase.execute(coffee);
     }

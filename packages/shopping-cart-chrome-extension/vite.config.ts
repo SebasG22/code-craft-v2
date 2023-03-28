@@ -1,8 +1,8 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
-import { crx } from '@crxjs/vite-plugin'
+import { crx } from '@crxjs/vite-plugin';
 import manifest from './manifest.json';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/shopping-cart-chrome-extension',
@@ -23,7 +23,6 @@ export default defineConfig({
       root: '../../',
     }),
     // crx({ manifest })
-    
   ],
 
   // Uncomment this if you are using workers.
