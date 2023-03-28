@@ -1,9 +1,9 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import { CoffeeEntityProps } from '@code-craft/coffee-store';
+import { CoffeeEntitySerialize } from '@code-craft/coffee-store';
 import cupStyles from './cup.css?inline';
 
 interface CupProps {
-  item: CoffeeEntityProps;
+  item: CoffeeEntitySerialize;
 }
 
 export default component$((props: CupProps) => {

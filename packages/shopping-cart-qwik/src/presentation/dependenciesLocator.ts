@@ -4,7 +4,7 @@ import {
   CoffeeInMemory,
   GetShoppingUseCase,
   ShoppingCartInMemory,
-  CoffeeQwikController,
+  CoffeeController,
   RemoveOneItemFromShoppingCartUseCase,
   CoffeeView,
   CoffeePresenter,
@@ -28,7 +28,7 @@ export const getCoffeePresenter = (view: CoffeeView) => {
   );
 };
 
-let instance: CoffeeQwikController;
+let instance: CoffeeController;
 export const getCoffeeControllerQwik = () => {
   const coffeeInMemory = new CoffeeInMemory();
   const shoppingInMemory = new ShoppingCartInMemory();
@@ -47,7 +47,7 @@ export const getCoffeeControllerQwik = () => {
     shoppingInMemory
   );
   if (!instance) {
-    instance = new CoffeeQwikController(
+    instance = new CoffeeController(
       getAllCoffeeUseCase,
       getShoppingUseCase,
       saveCoffeeItemIntoShoppingCartUseCase,
