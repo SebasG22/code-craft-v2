@@ -5,7 +5,7 @@ import { RemoveItemFromShoppingCartUseCase } from '../domain/use-cases/remove-it
 import { RemoveOneItemFromShoppingCartUseCase } from '../domain/use-cases/remove-one-item-shopping';
 import { SaveItemShoppingCartUseCase } from '../domain/use-cases/save-item-shopping';
 
-export class CoffeeQwikController {
+export class CoffeeController {
   constructor(
     public getAllCoffeeUseCase: GetAllCoffeesUseCase,
     public getShoopingCartUseCase: GetShoppingUseCase,
@@ -27,6 +27,7 @@ export class CoffeeQwikController {
   addItemToCart(id: string) {
     const coffees = this.getAllCoffeeUseCase.execute();
     const coffee = this.getCoffeeEntity(coffees, id);
+    console.warn({coffee });
     if (coffee) {
       this.saveItemShoppingCartUseCase.execute(coffee);
     }
