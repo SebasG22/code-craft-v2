@@ -1,3 +1,4 @@
+// Stryker disable all
 import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { CoffeeRepository } from '../domain/repositories/coffee.repository';
 

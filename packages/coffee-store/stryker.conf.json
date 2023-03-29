@@ -1,13 +1,13 @@
 {
   "tempDirName": "stryker-tmp/packages/coffee-store/",
   "coverageAnalysis": "perTest",
-  "reporters": ["html", "clear-text", "progress"],
+  "reporters": ["html", "clear-text", "progress-append-only"],
   "commandRunner": {
     "command": "yarn nx test coffee-store --skip-nx-cache"
   },
   "mutate": [
-    "./packages/coffee-store/src/lib/domain/entities/**/*.{js,ts}",
-    "!./packages/coffee-store/src/lib/domain/entities/**/*.{spec.js,spec.ts,test.js,test.ts}"
+    "./packages/coffee-store/src/lib//**/*.{js,ts}",
+    "!./packages/coffee-store/src/lib//**/*.{spec.js,spec.ts,test.js,test.ts}"
   ],
   "ignorePatterns": ["dist/*", "!packages/coffe-store/src"],
   "htmlReporter": {

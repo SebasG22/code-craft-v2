@@ -1,3 +1,4 @@
+// Stryker disable all
 import { ShoppingCartEntity } from '../domain/entities/shopping-cart.entity';
 import { ShoppingCartRepository } from '../domain/repositories/shopping-cart.repository';
 

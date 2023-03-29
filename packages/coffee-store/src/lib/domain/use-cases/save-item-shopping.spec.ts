@@ -11,6 +11,12 @@ const coffess = [
     price: 2,
     id: 'demo-capuccino',
   }),
+  CoffeeEntity.create({
+    ingredients: [],
+    name: 'Mocha',
+    price: 5,
+    id: 'demo-mocha',
+  }),
 ];
 
 const cartEmpty = ShoppingCartEntity.create({
@@ -22,6 +28,10 @@ const cartWithItems = ShoppingCartEntity.create({
     {
       type: coffess[0],
       quantity: 2,
+    },
+    {
+      type: coffess[1],
+      quantity: 4,
     },
   ],
 });
@@ -41,9 +51,9 @@ describe('Save Item Shopping Use Case', () => {
     const repo = new ShoppingCartInMemory(cartWithItems);
     const useCase = new SaveItemShoppingCartUseCase(repo);
 
-    const result = useCase.execute(coffess[0]);
+    const result = useCase.execute(coffess[1]);
 
-    expect(result.value.items[0].type).toEqual(coffess[0]);
-    expect(result.value.items[0].quantity).toEqual(3);
+    expect(result.value.items[1].type).toEqual(coffess[1]);
+    expect(result.value.items[1].quantity).toEqual(5);
   });
 });

@@ -1,3 +1,4 @@
+// Stryker disable all
 import { CoffeeEntity } from '../domain/entities/coffee.entity';
 import { ShoppingCartEntity } from '../domain/entities/shopping-cart.entity';
 import { GetAllCoffeesUseCase } from '../domain/use-cases/get-all-coffees';
