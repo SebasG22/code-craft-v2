@@ -1,4 +1,5 @@
-export const data = [
+// Stryker disable all
+export const data_coffees = [
   {
     id: '12334',
     name: 'Espresso',

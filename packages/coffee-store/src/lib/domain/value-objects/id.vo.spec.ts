@@ -4,7 +4,8 @@ describe('ID Vo', () => {
   it('should generate an ID instance', () => {
     const id = Id.generateId();
 
-    expect(id.value).toContain('-');
+    const value = id.value.split('-');
+    expect(value[1].length).toEqual(6);
   });
 
   it('should create an ID instance when passing an specific Id value', () => {

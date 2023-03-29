@@ -5,8 +5,12 @@ import { GetShoppingUseCase } from './get-shopping';
 import { ShoppingCartInMemory } from '../../data/shopping-cart-in-memory';
 
 describe('Remove Item Shopping Use Case', () => {
-  it('should remove the item if quantity is 0', () => {
-    const cart = ShoppingCartEntity.create({
+  let cart: ShoppingCartEntity;
+  let repo: ShoppingCartInMemory;
+  let getShoppingUseCase: GetShoppingUseCase;
+  let removeOneItemUseCase: RemoveOneItemFromShoppingCartUseCase;
+  beforeEach(() => {
+    cart = ShoppingCartEntity.create({
       items: [
         {
           type: CoffeeEntity.create({
@@ -17,41 +21,40 @@ describe('Remove Item Shopping Use Case', () => {
           }),
           quantity: 1,
         },
-      ],
-    });
-    const repo = new ShoppingCartInMemory(cart);
-    const getShoppingUseCase = new GetShoppingUseCase(repo);
-    const removeOneItemUseCase = new RemoveOneItemFromShoppingCartUseCase(repo);
-
-    removeOneItemUseCase.execute('demo-capuccino');
-
-    const result = getShoppingUseCase.execute();
-    expect(result.totalItems).toEqual(0);
-    expect(result.value.items.length).toEqual(0);
-  });
-
-  it('should reduce the quantity', () => {
-    const cart = ShoppingCartEntity.create({
-      items: [
         {
           type: CoffeeEntity.create({
             ingredients: [],
-            name: 'Cappuccino',
+            name: 'mocha',
             price: 2,
-            id: 'demo-capuccino',
+            id: 'demo-mocha',
           }),
           quantity: 2,
         },
       ],
     });
-    const repo = new ShoppingCartInMemory(cart);
-    const getShoppingUseCase = new GetShoppingUseCase(repo);
-    const removeItemUseCase = new RemoveOneItemFromShoppingCartUseCase(repo);
+    repo = new ShoppingCartInMemory(cart);
+    getShoppingUseCase = new GetShoppingUseCase(repo);
+    removeOneItemUseCase = new RemoveOneItemFromShoppingCartUseCase(repo);
+  });
 
-    removeItemUseCase.execute('demo-capuccino');
+  it('should remove the item if quantity is 0', () => {
+    removeOneItemUseCase.execute('demo-capuccino');
 
     const result = getShoppingUseCase.execute();
-    expect(result.totalItems).toEqual(1);
+    expect(result.totalItems).toEqual(2);
     expect(result.value.items.length).toEqual(1);
+  });
+
+  it('should reduce the quantity', () => {
+    removeOneItemUseCase.execute('demo-mocha');
+    const result = getShoppingUseCase.execute();
+    expect(result.totalItems).toEqual(2);
+    expect(result.value.items.length).toEqual(2);
+  });
+
+  it('should throw an error if the id is invalid', () => {
+    expect(() => removeOneItemUseCase.execute('demo-mocha-1')).toThrow(
+      'Item cannot be removed because does not exist'
+    );
   });
 });

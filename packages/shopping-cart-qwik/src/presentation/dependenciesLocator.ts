@@ -9,11 +9,15 @@ import {
   CoffeeView,
   CoffeePresenter,
   RemoveItemFromShoppingCartUseCase,
+  ShoppingCartEntity,
+  data_coffees,
+  CoffeeEntity,
 } from '@code-craft/coffee-store';
 
 export const getCoffeePresenter = (view: CoffeeView) => {
-  const coffeeInMemory = new CoffeeInMemory();
-  const shoppingInMemory = new ShoppingCartInMemory();
+  const cart = ShoppingCartEntity.create({ items: [] });
+  const coffeeInMemory = new CoffeeInMemory([]);
+  const shoppingInMemory = new ShoppingCartInMemory(cart);
 
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
@@ -30,8 +34,19 @@ export const getCoffeePresenter = (view: CoffeeView) => {
 
 let instance: CoffeeController;
 export const getCoffeeControllerQwik = () => {
-  const coffeeInMemory = new CoffeeInMemory();
-  const shoppingInMemory = new ShoppingCartInMemory();
+  const coffees = data_coffees
+    .filter((item) => item.availability)
+    .map((item) =>
+      CoffeeEntity.create({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        ingredients: item.recipe,
+      })
+    );
+  const cart = ShoppingCartEntity.create({ items: [] });
+  const coffeeInMemory = new CoffeeInMemory(coffees);
+  const shoppingInMemory = new ShoppingCartInMemory(cart);
 
   const getAllCoffeeUseCase = new GetAllCoffeesUseCase(coffeeInMemory);
   const getShoppingUseCase = new GetShoppingUseCase(shoppingInMemory);
