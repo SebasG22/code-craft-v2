@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import Cup from '../components/Cup.vue';
 import Pay from '../components/Pay/Pay.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useItems } from '../composition/useItems';
+import { animate, stagger } from 'motion';
 
 const modalRef = ref();
 const selectedCoffee = ref();
@@ -13,14 +14,30 @@ const execute = (item: any) => {
   selectedCoffee.value = item;
   modalRef.value?.showModal();
 };
+
+onMounted(() => {
+  animate(
+    '#animation-target li',
+    { y: ['100%', 0] },
+    {
+      delay: stagger(0.1),
+      duration: 0.5,
+      easing: [0.22, 0.03, 0.26, 1],
+    }
+  );
+});
 </script>
 
 <template>
   <main>
     <section class="container">
       <div>
-        <ul>
-          <li v-for="item in itemList.list" :key="item.id">
+        <ul id="animation-target">
+          <li
+            v-for="item in itemList.list"
+            :key="item.id"
+            :id="`coffee-${item.id}`"
+          >
             <h4>
               {{ item.name }}
               <br />

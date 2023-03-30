@@ -1,5 +1,6 @@
 import { reactive } from 'vue';
 import { getCoffeeControllerVue } from '../presentation/dependenciesLocator';
+import { animate, stagger } from 'motion';
 
 const controller = getCoffeeControllerVue();
 
@@ -13,6 +14,14 @@ const addItemToShopping = (id: string) => {
   controller.addItemToCart(id);
   const cartInfo = controller.getShoppingCart();
   cartList.cart = cartInfo;
+  animate(
+    `#coffee-${id}`,
+    { rotate: [0, 10, -10, 0] },
+    {
+      duration: 0.5,
+      delay: stagger(0.1),
+    }
+  );
 };
 
 const removeOneItemFromCart = (id: string) => {
