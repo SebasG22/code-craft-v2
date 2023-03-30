@@ -20,6 +20,9 @@ export class CoffeeController {
   }
 
   getAllCoffees() {
+    console.warn(this.getAllCoffeeUseCase
+      .execute()
+      );
     return this.getAllCoffeeUseCase
       .execute()
       .map((item) => item.serializeValue);

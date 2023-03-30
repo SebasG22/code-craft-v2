@@ -21,6 +21,7 @@
     "@stryker-mutator/core": "^6.4.2",
     "@vitejs/plugin-vue": "^4.1.0",
     "axios": "^1.0.0",
+    "motion": "^10.15.5",
     "pocketbase": "^0.12.1",
     "qwik-nx": "^0.14.0",
     "react": "18.2.0",
