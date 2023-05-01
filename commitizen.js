@@ -1,5 +1,6 @@
 // prettier-ignore
 const scopes = [
+  { name: 'clean-architecture-slides', description: 'anything clean-architecture-slides specific'},
     { name: 'coffee-store', description: 'anything coffee-store specific'},
     { name: 'shopping-cart-react', description: 'anything shopping-cart-react specific'},
     { name: 'shopping-cart-qwik', description: 'anything shopping-cart-qwik specific'},

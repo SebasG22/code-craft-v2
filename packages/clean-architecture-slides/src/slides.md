@@ -35,7 +35,7 @@ Sebastian Guevara
 <div class="abs-bl mx-14 my-12 flex">
   <div class="ml-3 flex flex-col text-left">
     <div><b>Workshop</b> Space</div>
-    <div class="text-sm opacity-50">May. 2th, 2023</div>
+    <div class="text-sm opacity-50">Mayo 2 2023</div>
   </div>
 </div>
 
@@ -948,14 +948,675 @@ La interfaz de usuario puede cambiar fácilmente sin cambiar el resto del sistem
 ---
 
 <h1>Arquitecturas Limpias</h1>
-<span class="font-bold text-xl text-gray-400"> Independientes de la base de datos </span>
 
-<p class="text-sm leading-8 opacity-80">
- Las reglas de negocio no están atadas a la base de datos.
-</p>
 
-<span class="font-bold text-xl text-gray-400"> Independientes de cualquier agencia externa </span>
+<div class="grid grid-cols-3 grid-rows-2 gap-4 mt-10">
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-2"> Independientes de la base de datos </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las reglas de negocio no están atadas a la base de datos.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-2"> Testeables </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las reglas de negocio se pueden probar sin la interfaz de usuario.
+        </p>
+    </div>
+    <div>
+         <span class="block text-center font-bold text-sm text-gray-200 leading-2"> Independientes de la interfaz de usuario </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        La interfaz de usuario puede cambiar fácilmente sin cambiar el resto del sistema.
+        </p>
+    </div>
+    <div>
+         <span class="block text-center font-bold text-sm text-gray-200 leading-2"> Independientes de la base de datos </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las reglas de negocio no están atadas a la base de datos.
+        </p>
+    </div>
+    <div>
+         <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Independientes de cualquier agencia externa </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las reglas de negocio simplemente no saben nada en absoluto sobre el mundo exterior.
+        </p>
+    </div>
+</div>
 
-<p class="text-sm leading-8 opacity-80">
- Las reglas de negocio simplemente no saben nada en absoluto sobre el mundo exterior
-</p>
+<!-- No puedes escribir tests simulando escenarios de prueba
+➔ Es muy complicado reemplazar librerías porque aparecen errores de lógica de negocio
+➔ Aparece código duplicado
+➔ Solucionar bugs o hacer refactors no es seguro -->
+
+---
+layout: statement
+---
+## Pasar de tener una aplicación React a...
+
+# Tener una aplicación donde la ui se renderiza usando React
+
+<!-- Con Clean Architecture es más sencillo evidenciar que nuestra aplicación es una red social, una aplicación de diagnóstico médico o un eCommerce por encima de ser una aplicación Android Java, Android Kotlin, ReactJS, AngularJS -->
+
+
+---
+layout: two-cols
+---
+# Regla Dependencia
+
+<div>
+ <img class="h-100 " src="/clean-architecture-layers.png">
+</div>
+
+::right::
+<div class="grid grid-cols-2 grid-rows-2 gap-4 mt-10">
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Solo círculos exteriores dependen de interiores </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Los círculos exteriores es cada vez más tecnología y los interiores cada vez más lógica.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Datos creados en círculos exteriores no son conocidos por círculos interiores </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Objetos de frameworks, estructuras de datos como XML o JSON.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Ningún círculo interno apunta a uno externo </span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        De esta forma evitamos que lógica dependa de librerías concretas o frameworks.
+        <span class="text-gray-50">Ningún círculo interior debe saber que existe uno exterior.</span>
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Círculos intermedios mapean los datos externos antes de entrar en círculos internos.</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        De esta forma evitamos que lógica dependa de librerías concretas o frameworks.
+        <span class="text-gray-50">Se mapean a un lenguaje conocido por los círculos interiores.</span>
+        </p>
+    </div>
+</div>
+
+---
+layout: two-cols
+---
+
+# Entidades, objetos valor y servicios de dominio
+
+<div>
+ <img class="h-100 " src="/entities-layer.png">
+</div>
+
+::right::
+<div class="grid grid-cols-3 grid-rows-3 gap-2 mt-20">
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Representar reglas empresariales</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Reglas independientes de la aplicación, sujetas al negocio de la empresa.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Objetos con lógica y datos</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Son objetos con alta cohesión y no son modelos anémicos (Alta Cohesion).
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Reutilizables entre tecnologías</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Android e iOS, si no hay lenguaje multiplataforma, serían idénticos salvo en sintaxis del lenguaje.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Son POJO o similar</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Plain Old Java Object. Solo dependen del lenguaje, no extienden de ninguna clases existente en una librería o framework externo.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Cambian con poca frecuencia</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las empresas cambian su negocio poco y la tecnología cambia muy rápidamente.
+        </p>
+    </div>
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">No tienen obsesión por los datos primitivos</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Evitan el uso de primitivos para modelar conceptos que tienen sus propias reglas
+        </p>
+    </div>
+</div>
+
+<!-- 
+- Encapsulan las reglas de negocio empresarial
+- Pueden ser reutilizadas en diferentes aplicaciones o diferentes partes tecnológicas dentro de un proyecto 
+- No cambian por cambios externos
+-->
+
+---
+layout: two-cols
+---
+# Entidades
+
+- Tipos mutables con identidad.
+
+- Si comparas dos objetos que tienen las mismas propiedades no necesariamente son el mismo objeto, solo si mismo id
+
+- Tienen un identificador (username) y normalmente tienen su propia pantalla (Users, Invoices, Orders)
+
+::right::
+```ts
+export class Producto {
+  private readonly _id: string;
+  private _nombre: string;
+  private _descripcion: string;
+  private _stock: number;
+
+  constructor(id: string, nombre: string, descripcion: string, stock: number) {
+    this._id = id;
+    this._nombre = nombre;
+    this._descripcion = descripcion;
+    this._stock = stock;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  get nombre(): string {
+    return this._nombre;
+  }
+
+  set nombre(value: string) {
+    this._nombre = value;
+  }
+  ...
+}
+```
+
+---
+layout: two-cols
+---
+# Objetos de Valor
+
+- Tipos inmutables sin identidad
+- Si comparas dos objetos que tienen las mismas propiedades debería decirte que son el mismo objeto
+- Las objetos de valor no tienen un identificador y no tienen su propia pantalla (username, money, address, FullName)
+
+::right::
+```ts
+export class Precio {
+  private readonly _valor: number;
+
+  constructor(valor: number) {
+    this._valor = valor;
+  }
+
+  get valor(): number {
+    return this._valor;
+  }
+
+  public calcularDescuento(porcentaje: number): Precio {
+    const descuento = this._valor * porcentaje / 100;
+    const valorConDescuento = this._valor - descuento;
+    return new Precio(valorConDescuento);
+  }
+}
+```
+
+---
+layout: fact
+---
+# Kata
+
+<!-- 
+- Un Kata es una metáfora para referirse a un ejercicio para practicar algo nuevo
+- Kata viene de las artes marciales y son movimientos que se repiten hasta
+que se perfeccionan
+- Son ejercicios simples para no añadir complejidad funcional
+- Vamos a seguir el principio de que nuestra app se debería ejecutar desde una app de consola, creando una app de consola o terminal
+- Vamos a empezar a desarrollar el dominio abstrayendonos de cómo se va a renderizar o persistir
+-->
+
+---
+
+# Práctica: Kata users app
+
+- Mostrar Lista de usuarios
+- Añadir un usuario nuevo
+- Un usuario debe contener nombre, email y password como campos obligatorios
+- La app debería mostrar un error si se intenta añadir dos usuarios con el mismo email
+- La app debería mostrar un error si se intenta añadir dos usuarios con el mismo email
+
+####  Extra
+
+- Añade la dirección como parte de la información necesaria para el usuario (dirección, código postal, ciudad)
+- Solo puede existir un usuario por dominio (1 usuario con gmail, etc..)  password como campos obligatorios
+- El email debe ser un email válido
+- La password debe ser mínimo 8 caracteres, al menos una letra y un número
+
+---
+
+# Práctica: Kata users app
+
+- La UI será una app de línea de comandos o terminal
+- Todos los datos en memoria, Sin persistencia entre ejecuciones
+- El origen de los datos podrá ser en un futuro una API o Base de datos
+- La UI podrá cambiar en un futuro a una web app, mobile app o desktop app
+- Las reglas de negocio deben ser validadas mediante test unitarios
+- En los tests las dependencias serán reemplazadas por dependencias fake manuales
+- Hay que crear también tests de igualdad para los value objects y entidades
+
+--- 
+
+# Práctica: Kata users app 
+- Define entidades y value objects
+- Las reglas empresariales deben estar testeadas creando test unitarios 
+- Reglas:
+    - El usuario debe tener nombre, email y password como obligatorios
+    - El email de ser un email válido
+    - La password debe ser de una longitud mínima de 8 caracteres, tener al menos una letra y un número.
+    - Dos instancias de un mismo email deben ser iguales
+    - Dos instancias de un misma password deben ser iguales en una comparación
+    - Dos instancias de user con el mismo id deben ser iguales en una comparación
+
+---
+layout: cover
+---
+# Clean Architecture
+
+Descubre cómo crear aplicaciones escalables y mantenibles
+<div class="uppercase text-sm tracking-widest">
+Sebastian Guevara
+</div>
+
+<div class="abs-bl mx-14 my-12 flex">
+  <div class="ml-3 flex flex-col text-left">
+    <div><b>Workshop</b> Space</div>
+    <div class="text-sm opacity-50">Mayo 3, 2023</div>
+  </div>
+</div>
+
+<div class="absolute bottom-10 right-10">
+  <span class="text-sm">
+    <SlideCurrentNo />
+  </span>
+</div>
+
+---
+layout: two-cols
+---
+# Puertos o contratos de adaptadores
+
+<div>
+ <img class="h-100 " src="/use-cases-layer.png">
+</div>
+
+::right::
+<div class="grid grid-cols-3 grid-rows-3 gap-2 mt-20">
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Son interfaces que marcan un contrato</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Marcan el contrato de comunicación con el mundo exterior para abstraer el dominio de los detalles de implementación.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Hay puertos de salida</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        A través de estos puertos el dominio se comunica con el exterior y oculta detalles de implementación.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Reutilizables entre tecnologías</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Android e iOS, si no hay lenguaje multiplataforma, serían idénticos salvo en sintaxis del lenguaje.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Hay puertos de entrada</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        A través de estos puertos el exterior se comunica con el dominio.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Cambian con poca frecuencia</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las empresas cambian su negocio poco y la tecnología cambia muy rápidamente.
+        </p>
+    </div>
+</div>
+
+
+<!-- 
+- En otras palabras, la capa de puertos de entrada maneja la entrada de datos y la validación de datos de entrada, mientras que la capa de puertos de salida maneja la persistencia de datos y la interacción con servicios externos. La capa de puertos de entrada se enfoca en la seguridad, la autenticación, la autorización y la validación de datos de entrada, mientras que la capa de puertos de salida se enfoca en la integración con otros sistemas y la persistencia de datos.
+
+- En resumen, la capa de puertos de entrada y la capa de puertos de salida son dos capas distintas en Clean Architecture, que tienen responsabilidades y objetivos diferentes. La capa de puertos de entrada se enfoca en la entrada de datos y la capa de puertos de salida se enfoca en la salida de datos. Ambas capas son necesarias para construir una arquitectura limpia y escalable. -->
+
+----
+
+# Puertos
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}   
+class DatabaseError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "DatabaseError";
+  }
+}
+class DuplicateUserError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "DuplicateUserError";
+  }
+}
+export interface UserRepository {
+  save(user: User): Promise<void | DatabaseError | DuplicateUserError>;
+  findById(id: number): Promise<User | null | DatabaseError>;
+  findByEmail(email: string): Promise<User | null | DatabaseError>;
+}
+```
+
+
+---
+
+# Casos de uso o interactores
+
+
+<div class="grid grid-cols-3 grid-rows-3 gap-2 mt-20">
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Representar reglas específicas de la aplicación</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Son las acciones que puede realizar nuestra aplicación. Son el índice de comportamiento.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Objetos de coordinación</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Su función es coordinar llamadas desde y hacia entidades.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Reutilizables entre tecnologías</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Android e iOS, si no hay lenguaje multiplataforma, serían idénticos salvo en sintaxis del lenguaje.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Son POJO o similar</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Plain Old Java Object. Solo dependen del lenguaje, no extienden de ninguna clases existente en una librería o framework externo.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Cambian con poca frecuencia</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Las empresas cambian su negocio poco y la tecnología cambia muy rápidamente.
+        </p>
+    </div>
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Empiezan con un verbo</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        GetProducById, MakePayment, AddtoCart, SaveInWishList
+        </p>
+    </div>
+</div>
+
+---
+
+# Casos de uso o interactores
+
+```ts
+import { UserRepository, User } from "./UserRepository";
+
+export class CreateUserUseCase {
+  constructor(private readonly userRepository: UserRepository) {}
+
+  async execute(input: CreateUserInput): Promise<CreateUserOutput> {
+    try {
+      const { name, email, password } = input;
+      const user = { name, email, password } as User;
+
+      await this.userRepository.save(user);
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  }
+}
+```
+
+<!-- 
+- Encapsulan las reglas de negocio de la aplicación
+
+- Es solo una declaración o índice de las acciones que puede realizar el dominio
+
+- No cambian por cambios externos
+
+- 1 por cada acción -->
+
+--- 
+layout: two-cols
+---
+# Dominio
+
+<div>
+ <img class="h-100 " src="/domain-layer.png">
+</div>
+
+::right::
+
+<div class="mt-20"/>
+
+- Entidades, objetos valor, servicios de dominio, Casos de uso y puertos
+- Sin dependencias externas, solo lenguaje puro
+- Es la identidad de una aplicación y la parte más estable
+- En otras arquitecturas lo llaman Hexágono
+
+---
+layout: two-cols
+---
+# Adaptadores
+
+<div>
+ <img class="h-100 " src="/adapters-layer.png">
+</div>
+
+::right::
+<div class="grid grid-cols-3 grid-rows-3 gap-2 mt-20">
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4"> Traductores</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Convierten datos del formato más conveniente para los casos de uso y entidades, al formato más conveniente para algún sistema externa como la Base de Datos o la Web.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Adaptadores de Salida</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Son objetos con los que los casos de uso inician una comunicación. Por ejemplos repositorios.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Se comunican con los casos de uso mediante estructuras de datos</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Mappers.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Adaptadores de entrada</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Son objetos que inician la comunicación con con los casos de uso. Por ejemplo controladores.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Dependientes de la tecnología</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Si cambia la tecnología vamos a tener que cambiar el adaptador pero no el dominio.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Dependen de aquello que adaptan</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        El adaptador de una aplicación de consola no es igual que el de una web
+        </p>
+    </div>
+</div>
+
+---
+
+# Adaptadores
+
+```ts
+import { UserRepository, User, DatabaseError } from "./UserRepository";
+import { Connection, Repository } from "typeorm";
+
+export class UserRepositoryDB implements UserRepository {
+  private readonly userRepository: Repository<User>;
+
+  constructor(private readonly connection: Connection) {
+    this.userRepository = connection.getRepository(User);
+  }
+
+  async findById(id: number): Promise<User | null> {
+    const user = await this.userRepository.findOne(id);
+
+    return user || null;
+  }
+
+  async save(user: User): Promise<void> {
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      throw new DatabaseError("Error al guardar el usuario en la base de datos.");
+    }
+}
+```
+---
+layout: two-cols
+--- 
+
+# Frameworks y Drivers
+
+<div>
+ <img class="h-100 " src="/adapters-layer.png">
+</div>
+
+::right::
+<div class="grid grid-cols-3 grid-rows-3 gap-2 mt-20">
+     <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Se ubican los detalles de implementación</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Se ponen en la parte más externa para que hagan el menor daño sus cambios.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Entrada de datos</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Web framework, Mobile Framework, API framework. Páginas, Activitites, ViewControllers, compomentes, widgets.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Modelos acoplados a librerías</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Modelos de base de datos o librerías externas. Realm, Firebase, Entity framework.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Es la capa que cambia con mayor frecuencia</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Es habitual cambiar de librería, framework o que actualizaciones de estos modifiquen su API.
+        </p>
+    </div>
+    <div>
+        <span class="block text-center font-bold text-sm text-gray-200 leading-4">Salida de datos</span>
+        <p class="text-sm leading-8 opacity-80 mt-0 text-center">
+        Base de datos, sistemas externos, SDKs etc
+        </p>
+    </div>
+</div>
+
+---
+
+# Frameworks - Drivers
+
+```ts
+import express, { Request, Response } from "express";
+import { Connection, createConnection } from "typeorm";
+import { UserRepositoryDB } from "./UserRepositoryDB";
+import { CreateUserUseCase, CreateUserInput } from "./CreateUserUseCase";
+
+const app = express();
+const port = 3000;
+// Configuración de la conexión a la base de datos
+const connectionPromise = createConnection({});
+
+app.use(express.json());
+app.post("/users", async (req: Request, res: Response) => {
+  const input: CreateUserInput = req.body;
+
+  try {
+    const connection: Connection = await connectionPromise;
+    const userRepository = new UserRepositoryDB(connection);
+    const createUserUseCase = new CreateUserUseCase(userRepository);
+
+    const result = await createUserUseCase.execute(input);
+
+    if (result.success) {
+      res.status(201).send("Usuario creado correctamente.");
+    } else {
+      res.status(400).send(result.error);
+    }
+  } catch (error) {
+    res.status(500).send("Error en el servidor.");
+  }
+});
+```
+---
+
+#  Clean Architecture
+
+- El objetivo es aislar el dominio ocultando detalles de implementación
+- Con la regla de dependencia utilizando la inversión de dependencias conseguimos que los círculos más internos no sepan de los más externos
+- Círculos más internos, dominio. Círculos más externos, tecnología. Círculos de en medio, adaptadores
+- No solo 4 círculos depende de tu aplicación y de tu implementación
+- Siguiendo la regla de dependencia conseguimos una aplicación escalable y testable
+- Los casos de uso se deben poder ejecutar desde una aplicación de terminal
+
+<!-- 
+- Se trata de separar el qué del cómo
+- El qué es a grandes rasgos el dominio
+- El cómo es a grandes rasgos es Asp.net, EF, Api Rest, Graph sql, Sql Server 
+- Clean Architecture son unos principios clave muy claros y pueden existir diferentes implementaciones
+-->
+
+---
+
+# Práctica: Kata Users App
+
+- Define los casos de uso y el repositorio
+- Las reglas de aplicación deben estar testeadas creando test unitarios
+- En los test unitarios debemos utilizar objetos fake manuales
+- Regla: La aplicación no debe permitir añadir dos usuarios con el mismo email
+---
+layout: statement
+---
+
+If you think good architecture is
+expensive, try bad architecture
+
+Brian foote & Joseph Yoder ́s
+
+---
+
+# Resources
+
+- Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series)
+- https://blog.cleancoder.com/uncle-bob/ 
+- https://xurxodev.com/blog/
+- CoderOne React Solid

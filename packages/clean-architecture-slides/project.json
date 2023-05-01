@@ -1,0 +1,18 @@
+{
+    "name": "clean-architecture-slides",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/clean-architecture-slides/src",
+    "projectType": "library",
+    "targets": {
+        "serve": {
+            "executor": "nx:run-commands",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "command": "slidev",
+                "cwd": "packages/clean-architecture-slides/src"
+            }
+          }
+    },
+    "tags": []
+  }
+  
